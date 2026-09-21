@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Un regalo especial para ti 💛</title>
+
+    <!-- Carga de GSAP y Canvas Confetti -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap");
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        background: radial-gradient(circle, #fffdf0 0%, #ffeaa7 100%);
+        min-height: 100vh;
+        min-height: 100dvh; /* Soporte para alto real en navegadores móviles */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        overflow-x: hidden;
+        padding: 15px;
+        touch-action: manipulation;
+      }
+
+      /* Escena de la caja de regalo */
+      .gift-container {
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.3s ease;
+        width: 100%;
+        max-width: 300px;
+      }
+
+      .gift-container:active {
+        transform: scale(0.95);
+      }
+
+      .click-instruction {
+        font-size: clamp(1rem, 4vw, 1.25rem);
+        color: #d63031;
+        font-weight: 600;
+        margin-bottom: 25px;
+        text-align: center;
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 0.6;
+          transform: scale(0.98);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.03);
+        }
+        100% {
+          opacity: 0.6;
+          transform: scale(0.98);
+        }
+      }
+
+      .box {
+        position: relative;
+        width: 130px;
+        height: 130px;
+      }
+
+      .box-body {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 90px;
+        background: #ff7675;
+        border-radius: 0 0 12px 12px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .box-body::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 28px;
+        height: 100%;
+        background: #ffd700;
+      }
+
+      .box-lid {
+        position: absolute;
+        top: 15px;
+        left: -10px;
+        width: 150px;
+        height: 32px;
+        background: #d63031;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+      }
+
+      .box-lid::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 28px;
+        height: 100%;
+        background: #ffd700;
+      }
+
+      /* Contenedor de las flores y carta */
+      .flowers-card-container {
+        display: none;
+        opacity: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 450px;
+      }
+
+      canvas {
+        filter: drop-shadow(0px 10px 15px rgba(0, 0, 0, 0.12));
+        max-width: 100%;
+        height: auto;
+      }
+
+      .message-card {
+        margin-top: -15px;
+        background: rgba(255, 255, 255, 0.93);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        padding: 20px 25px;
+        border-radius: 20px;
+        box-shadow: 0 15px 35px rgba(214, 48, 49, 0.15);
+        text-align: center;
+        width: 90%;
+        max-width: 400px;
+        border: 2px solid #ffeaa7;
+        transform: translateY(30px);
+      }
+
+      .message-card h1 {
+        font-family: "Dancing Script", cursive;
+        font-size: clamp(2rem, 8vw, 2.8rem);
+        color: #d63031;
+        margin-bottom: 8px;
+        line-height: 1.2;
+      }
+
+      .message-card p {
+        color: #2d3436;
+        font-size: clamp(0.9rem, 3.5vw, 1.05rem);
+        line-height: 1.5;
+      }
+
+      .heart-icon {
+        color: #d63031;
+        font-size: 1.5rem;
+        display: inline-block;
+        margin-top: 8px;
+        animation: beat 1s infinite alternate;
+      }
+
+      @keyframes beat {
+        to {
+          transform: scale(1.2);
+        }
+      }
+
+      /* Ajustes específicos para teléfonos pequeñitos */
+      @media (max-width: 360px) {
+        .box {
+          width: 110px;
+          height: 110px;
+        }
+        .box-lid {
+          width: 130px;
+        }
+        .message-card {
+          padding: 15px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- REGALO PARA HACER CLICK -->
+    <div class="gift-container" id="gift">
+      <div class="click-instruction">✨ Toca para abrir tu regalo ✨</div>
+      <div class="box">
+        <div class="box-lid" id="lid"></div>
+        <div class="box-body"></div>
+      </div>
+    </div>
+
+    <!-- FLORES Y MENSAJE DE AMOR -->
+    <div class="flowers-card-container" id="flowerSection">
+      <canvas id="flowerCanvas"></canvas>
+
+      <div class="message-card" id="card">
+        <h1>Flores amarillas para ti, Feliz aniversario mi amor</h1>
+        <p>
+          Un detalle especial para iluminar tu día tanto como tú iluminas mi
+          vida todos los días. ¡Te amo muchísimo! 💛
+        </p>
+        <div class="heart-icon">❤️</div>
+      </div>
+    </div>
+
+    <script>
+      const gift = document.getElementById("gift");
+      const lid = document.getElementById("lid");
+      const flowerSection = document.getElementById("flowerSection");
+      const card = document.getElementById("card");
+      const canvas = document.getElementById("flowerCanvas");
+      const ctx = canvas.getContext("2d");
+
+      let isOpened = false;
+
+      // Ajustar el tamaño del Canvas de manera adaptativa según la pantalla
+      function setupCanvasSize() {
+        const containerWidth = Math.min(window.innerWidth * 0.9, 400);
+        canvas.width = containerWidth;
+        canvas.height = containerWidth * 0.95; // Relación de aspecto proporcional
+      }
+
+      window.addEventListener("resize", () => {
+        setupCanvasSize();
+        if (isOpened) drawBouquet();
+      });
+
+      setupCanvasSize();
+
+      // Animación de interacción con la caja
+      gift.addEventListener("click", () => {
+        if (isOpened) return;
+        isOpened = true;
+
+        // Animación de abrir la tapa usando GSAP
+        gsap
+          .timeline()
+          .to(lid, {
+            y: -80,
+            rotation: -25,
+            duration: 0.6,
+            ease: "back.out(1.7)",
+          })
+          .to(gift, {
+            scale: 0,
+            opacity: 0,
+            duration: 0.4,
+            display: "none",
+            ease: "power2.in",
+          })
+          .call(() => {
+            flowerSection.style.display = "flex";
+            launchConfetti();
+            animateFlowersAndCard();
+          });
+      });
+
+      // Lluvia de confeti adaptada a móviles
+      function launchConfetti() {
+        confetti({
+          particleCount: window.innerWidth < 480 ? 50 : 80,
+          spread: 60,
+          origin: { y: 0.6 },
+          colors: ["#ffd700", "#ffeaa7", "#fffa65", "#ff7675"],
+        });
+      }
+
+      // Dibujar Flores Amarillas escaladas proporcionalmente al canvas
+      function drawSunflower(x, y, scale) {
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.scale(scale, scale);
+
+        // Tallo
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.quadraticCurveTo(-10, 80, -5, 160);
+        ctx.lineWidth = 8;
+        ctx.strokeStyle = "#2ed573";
+        ctx.stroke();
+
+        // Hojas verdes
+        ctx.beginPath();
+        ctx.ellipse(-15, 80, 20, 10, Math.PI / 4, 0, Math.PI * 2);
+        ctx.fillStyle = "#26af5f";
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.ellipse(12, 110, 20, 10, -Math.PI / 4, 0, Math.PI * 2);
+        ctx.fillStyle = "#26af5f";
+        ctx.fill();
+
+        // Pétalos amarillos
+        const petalCount = 14;
+        ctx.fillStyle = "#ffd700";
+        for (let i = 0; i < petalCount; i++) {
+          ctx.beginPath();
+          ctx.rotate((Math.PI * 2) / petalCount);
+          ctx.ellipse(0, 35, 10, 28, 0, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // Centro de la flor
+        ctx.beginPath();
+        ctx.arc(0, 0, 20, 0, Math.PI * 2);
+        ctx.fillStyle = "#834c24";
+        ctx.fill();
+
+        // Detalle del centro
+        ctx.beginPath();
+        ctx.arc(0, 0, 16, 0, Math.PI * 2);
+        ctx.fillStyle = "#5c3315";
+        ctx.fill();
+
+        ctx.restore();
+      }
+
+      // Renderizar Ramo de Flores calculando posiciones dinámicas
+      function drawBouquet() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        const w = canvas.width;
+        const h = canvas.height;
+        const baseScale = w / 400; // Escala relativa al canvas base
+
+        // Flor Central
+        drawSunflower(w * 0.5, h * 0.42, 1.1 * baseScale);
+        // Flor Izquierda
+        drawSunflower(w * 0.3, h * 0.47, 0.85 * baseScale);
+        // Flor Derecha
+        drawSunflower(w * 0.7, h * 0.47, 0.85 * baseScale);
+      }
+
+      // Animación de aparición con GSAP
+      function animateFlowersAndCard() {
+        drawBouquet();
+
+        gsap
+          .timeline()
+          .to(flowerSection, { opacity: 1, duration: 0.1 })
+          .from(canvas, {
+            scale: 0.2,
+            y: 80,
+            duration: 1.2,
+            ease: "elastic.out(1, 0.5)",
+          })
+          .to(
+            card,
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              ease: "power3.out",
+            },
+            "-=0.6",
+          );
+      }
+    </script>
+  </body>
+</html>
