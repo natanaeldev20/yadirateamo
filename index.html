@@ -1,631 +1,783 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Te amo Yadira, mi Timu Timu 💛✨</title>
-  
-  <!-- GSAP, Canvas Confetti & FontAwesome -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Para Yadira, mi amor eterno ❤️✨</title>
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap');
+    <!-- GSAP y Canvas Confetti -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600;700&display=swap");
 
-    body {
-      background: radial-gradient(circle at center, #fff0f5 0%, #ffd6e8 40%, #ffb3c6 100%);
-      min-height: 100vh;
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
-      padding: 15px;
-      position: relative;
-    }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
 
-    /* Elementos flotantes de fondo (Corazones y Estrellas) */
-    .bg-element {
-      position: absolute;
-      pointer-events: none;
-      z-index: 1;
-      animation: floatUp linear infinite;
-    }
+      body {
+        /* Fondo romántico rojo/rosado suave */
+        background: radial-gradient(
+          circle at center,
+          #fff0f5 0%,
+          #ffc2d1 40%,
+          #ff8fab 100%
+        );
+        min-height: 100vh;
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        overflow-x: hidden;
+        padding: 15px;
+        position: relative;
+      }
 
-    @keyframes floatUp {
-      0% { transform: translateY(105vh) scale(0.7) rotate(0deg); opacity: 1; }
-      100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
-    }
+      /* Elementos flotantes de fondo (Corazones y destellos) */
+      .bg-element {
+        position: absolute;
+        pointer-events: none;
+        z-index: 1;
+        animation: floatUp linear infinite;
+        color: rgba(255, 0, 84, 0.4);
+      }
 
-    /* Caja de regalo interactiva */
-    .gift-container {
-      position: relative;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      z-index: 10;
-      width: 100%;
-      max-width: 320px;
-    }
+      @keyframes floatUp {
+        0% {
+          transform: translateY(105vh) scale(0.7) rotate(0deg);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-10vh) scale(1.2) rotate(360deg);
+          opacity: 0;
+        }
+      }
 
-    .click-instruction {
-      font-size: clamp(1.1rem, 4.5vw, 1.4rem);
-      color: #ff0054;
-      font-weight: 700;
-      margin-bottom: 25px;
-      text-align: center;
-      text-shadow: 0 2px 10px rgba(255, 255, 255, 0.9);
-      animation: pulseGlow 1.5s infinite alternate;
-    }
+      /* Caja de regalo interactiva */
+      .gift-container {
+        position: relative;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 10;
+        width: 100%;
+        max-width: 320px;
+      }
 
-    @keyframes pulseGlow {
-      0% { transform: scale(0.98); opacity: 0.8; }
-      100% { transform: scale(1.05); opacity: 1; text-shadow: 0 0 15px #ff758f; }
-    }
+      .click-instruction {
+        font-size: clamp(1.1rem, 4.5vw, 1.4rem);
+        color: #c9184a;
+        font-weight: 700;
+        margin-bottom: 25px;
+        text-align: center;
+        text-shadow: 0 2px 10px rgba(255, 255, 255, 0.9);
+        animation: pulseGlow 1.5s infinite alternate;
+      }
 
-    /* Regalo Rosa Dorado */
-    .box {
-      position: relative;
-      width: 170px;
-      height: 170px;
-    }
+      @keyframes pulseGlow {
+        0% {
+          transform: scale(0.98);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1.05);
+          opacity: 1;
+          text-shadow: 0 0 15px #ff4d6d;
+        }
+      }
 
-    .box-body {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 120px;
-      background: linear-gradient(135deg, #ff4d6d 0%, #c9184a 100%);
-      border-radius: 0 0 18px 18px;
-      box-shadow: 0 20px 40px rgba(201, 24, 74, 0.4), inset 0 -4px 8px rgba(0,0,0,0.2);
-    }
+      /* Regalo Rojo Pasión con Cinta Rosada */
+      .box {
+        position: relative;
+        width: 170px;
+        height: 170px;
+      }
 
-    .box-body::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 36px;
-      height: 100%;
-      background: linear-gradient(90deg, #ffe082, #ffd54f, #ffb300);
-      box-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
-    }
+      .box-body {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 120px;
+        background: linear-gradient(135deg, #a4133c 0%, #590d22 100%);
+        border-radius: 0 0 18px 18px;
+        box-shadow:
+          0 20px 40px rgba(89, 13, 34, 0.5),
+          inset 0 -4px 8px rgba(0, 0, 0, 0.3);
+      }
 
-    .box-lid {
-      position: absolute;
-      top: 15px;
-      left: -10px;
-      width: 190px;
-      height: 42px;
-      background: linear-gradient(135deg, #ff758f, #ff4d6d);
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      z-index: 2;
-    }
+      /* Cinta vertical del regalo (Rosado/Blanco) */
+      .box-body::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 36px;
+        height: 100%;
+        background: linear-gradient(90deg, #ffb3c6, #ff8fab, #ffb3c6);
+        box-shadow: 0 0 12px rgba(255, 143, 171, 0.6);
+      }
 
-    .box-lid::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 36px;
-      height: 100%;
-      background: linear-gradient(90deg, #ffe082, #ffd54f, #ffb300);
-    }
+      .box-lid {
+        position: absolute;
+        top: 15px;
+        left: -10px;
+        width: 190px;
+        height: 42px;
+        background: linear-gradient(135deg, #c9184a, #a4133c);
+        border-radius: 10px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        z-index: 2;
+      }
 
-    .bow {
-      position: absolute;
-      top: -24px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 65px;
-      height: 32px;
-      z-index: 3;
-    }
+      /* Cinta en la tapa */
+      .box-lid::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 36px;
+        height: 100%;
+        background: linear-gradient(90deg, #ffb3c6, #ff8fab, #ffb3c6);
+      }
 
-    .bow-left, .bow-right {
-      position: absolute;
-      width: 35px;
-      height: 28px;
-      border: 4px solid #ffb300;
-      border-radius: 50% 50% 0 50%;
-      background: #ffd54f;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
+      /* Moño del regalo */
+      .bow {
+        position: absolute;
+        top: -26px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 65px;
+        height: 32px;
+        z-index: 3;
+      }
 
-    .bow-left { left: 0; transform: rotate(-25deg); }
-    .bow-right { right: 0; transform: scaleX(-1) rotate(-25deg); }
+      .bow-left,
+      .bow-right {
+        position: absolute;
+        width: 35px;
+        height: 28px;
+        border: 4px solid #ff4d6d;
+        border-radius: 50% 50% 0 50%;
+        background: #ff8fab;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
 
-    /* Contenedor Principal del Ramo */
-    .flowers-card-container {
-      display: none;
-      opacity: 0;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      z-index: 10;
-      width: 100%;
-      max-width: 500px;
-    }
+      .bow-left {
+        left: 0;
+        transform: rotate(-25deg);
+      }
+      .bow-right {
+        right: 0;
+        transform: scaleX(-1) rotate(-25deg);
+      }
 
-    .canvas-wrapper {
-      position: relative;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+      /* Contenedor Principal del Ramo */
+      .flowers-card-container {
+        display: none;
+        opacity: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        max-width: 500px;
+      }
 
-    canvas {
-      filter: drop-shadow(0px 18px 30px rgba(255, 0, 84, 0.3));
-      max-width: 100%;
-      height: auto;
-    }
+      .canvas-wrapper {
+        position: relative;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-    /* --- TRES STICKERS DE SNOOPY --- */
-    .sticker {
-      position: absolute;
-      z-index: 15;
-      pointer-events: none;
-      filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.25));
-    }
+      canvas {
+        filter: drop-shadow(0px 18px 30px rgba(201, 24, 74, 0.4));
+        max-width: 100%;
+        height: auto;
+      }
 
-    /* 1. Snoopy con Globo Volando (Arriba Izquierda) */
-    .snoopy-balloon {
-      top: 2%;
-      left: 8%;
-      width: 85px;
-      transform: rotate(-10deg);
-      animation: floatBalloon 4s ease-in-out infinite alternate;
-    }
+      /* --- STICKERS DE SNOOPY (MÁS AMOR) --- */
+      .sticker {
+        position: absolute;
+        z-index: 15;
+        pointer-events: none;
+        filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.25));
+      }
 
-    @keyframes floatBalloon {
-      0% { transform: translateY(0) rotate(-10deg); }
-      100% { transform: translateY(-12px) rotate(-4deg); }
-    }
+      /* 1. Snoopy con Globo Volando (Arriba Izquierda) */
+      .snoopy-balloon {
+        top: 2%;
+        left: 8%;
+        width: 85px;
+        transform: rotate(-10deg);
+        animation: floatBalloon 4s ease-in-out infinite alternate;
+      }
 
-    /* 2. Snoopy con Corazón (Abajo Derecha) */
-    .snoopy-heart {
-      bottom: 12%;
-      right: 12%;
-      width: 90px;
-      transform: rotate(12deg);
-      animation: pulseSticker 3s ease-in-out infinite alternate;
-    }
+      @keyframes floatBalloon {
+        0% {
+          transform: translateY(0) rotate(-10deg);
+        }
+        100% {
+          transform: translateY(-12px) rotate(-4deg);
+        }
+      }
 
-    /* 3. Snoopy & Woodstock (Abajo Izquierda) */
-    .snoopy-woodstock {
-      bottom: 16%;
-      left: 10%;
-      width: 85px;
-      transform: rotate(-8deg);
-      animation: pulseSticker 3.5s ease-in-out infinite alternate;
-    }
+      /* 2. Snoopy Abrazando Corazón (Derecha Media) */
+      .snoopy-heart {
+        bottom: 25%;
+        right: 5%;
+        width: 90px;
+        transform: rotate(12deg);
+        animation: pulseSticker 3s ease-in-out infinite alternate;
+      }
 
-    @keyframes pulseSticker {
-      0% { transform: scale(1) rotate(-8deg); }
-      100% { transform: scale(1.06) rotate(-4deg); }
-    }
+      /* 3. Snoopy & Woodstock (Abajo Izquierda) */
+      .snoopy-woodstock {
+        bottom: 12%;
+        left: 8%;
+        width: 85px;
+        transform: rotate(-8deg);
+        animation: pulseSticker 3.5s ease-in-out infinite alternate;
+      }
 
-    /* Mariposa Animada */
-    .butterfly {
-      position: absolute;
-      font-size: 1.8rem;
-      z-index: 16;
-      pointer-events: none;
-      animation: flyAround 8s infinite ease-in-out;
-    }
+      /* 4. Snoopy Durmiendo en el Ramo (Abajo Centro/Derecha) */
+      .snoopy-sleep {
+        bottom: -5%;
+        right: 25%;
+        width: 100px;
+        transform: rotate(5deg);
+        animation: breatheSticker 4s ease-in-out infinite alternate;
+      }
 
-    @keyframes flyAround {
-      0% { transform: translate(-80px, 40px) rotate(15deg) scale(0.8); }
-      50% { transform: translate(100px, -60px) rotate(-20deg) scale(1.1); }
-      100% { transform: translate(-80px, 40px) rotate(15deg) scale(0.8); }
-    }
+      @keyframes pulseSticker {
+        0% {
+          transform: scale(1) rotate(-8deg);
+        }
+        100% {
+          transform: scale(1.06) rotate(-4deg);
+        }
+      }
 
-    /* Tarjeta de Mensaje */
-    .message-card {
-      margin-top: -15px;
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-      padding: 28px 25px;
-      border-radius: 28px;
-      box-shadow: 0 20px 45px rgba(255, 0, 84, 0.2);
-      text-align: center;
-      width: 92%;
-      max-width: 440px;
-      border: 2px solid #ffb3c1;
-      transform: translateY(30px);
-      position: relative;
-    }
+      @keyframes breatheSticker {
+        0% {
+          transform: scale(1) translateY(0);
+        }
+        100% {
+          transform: scale(1.03) translateY(-3px);
+        }
+      }
 
-    .message-card h1 {
-      font-family: 'Dancing Script', cursive;
-      font-size: clamp(2.4rem, 9.5vw, 3.5rem);
-      color: #ff0054;
-      margin-bottom: 2px;
-      line-height: 1.1;
-      text-shadow: 0 2px 4px rgba(255, 179, 193, 0.5);
-    }
+      /* Corazón Animado Extra */
+      .floating-heart-animation {
+        position: absolute;
+        font-size: 2rem;
+        z-index: 16;
+        pointer-events: none;
+        animation: flyAround 8s infinite ease-in-out;
+        color: #ff0054;
+      }
 
-    .message-card h2 {
-      font-size: clamp(1rem, 4vw, 1.25rem);
-      color: #ff4d6d;
-      font-weight: 700;
-      margin-bottom: 12px;
-      letter-spacing: 0.5px;
-    }
+      @keyframes flyAround {
+        0% {
+          transform: translate(-80px, 40px) rotate(15deg) scale(0.8);
+          opacity: 0.7;
+        }
+        50% {
+          transform: translate(100px, -60px) rotate(-20deg) scale(1.2);
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-80px, 40px) rotate(15deg) scale(0.8);
+          opacity: 0.7;
+        }
+      }
 
-    .message-card p {
-      color: #4a4e69;
-      font-size: clamp(0.95rem, 3.8vw, 1.08rem);
-      line-height: 1.65;
-      font-weight: 400;
-    }
+      /* Tarjeta de Mensaje Ultra Romántica */
+      .message-card {
+        margin-top: -15px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        padding: 28px 25px;
+        border-radius: 28px;
+        box-shadow: 0 20px 45px rgba(201, 24, 74, 0.25);
+        text-align: center;
+        width: 92%;
+        max-width: 440px;
+        border: 2px solid #ff758f;
+        transform: translateY(30px);
+        position: relative;
+      }
 
-    /* Botón Sorpresa de Amor */
-    .love-btn {
-      margin-top: 18px;
-      background: linear-gradient(135deg, #ff0054 0%, #ff4d6d 100%);
-      color: white;
-      border: none;
-      padding: 12px 28px;
-      border-radius: 50px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(255, 0, 84, 0.35);
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
+      .message-card h1 {
+        font-family: "Dancing Script", cursive;
+        font-size: clamp(2.4rem, 9.5vw, 3.5rem);
+        color: #a4133c;
+        margin-bottom: 2px;
+        line-height: 1.1;
+        text-shadow: 0 2px 4px rgba(255, 179, 193, 0.5);
+      }
 
-    .love-btn:active {
-      transform: scale(0.92);
-    }
+      .message-card h2 {
+        font-size: clamp(1rem, 4vw, 1.25rem);
+        color: #ff0054;
+        font-weight: 700;
+        margin-bottom: 12px;
+        letter-spacing: 0.5px;
+      }
 
-    @media (max-width: 380px) {
-      .box { width: 140px; height: 140px; }
-      .box-lid { width: 160px; }
-      .snoopy-balloon { width: 65px; left: 4%; }
-      .snoopy-heart { width: 70px; right: 6%; }
-      .snoopy-woodstock { width: 65px; left: 4%; }
-      .message-card { padding: 20px 18px; }
-    }
-  </style>
-</head>
-<body>
+      .message-card p {
+        color: #590d22;
+        font-size: clamp(0.95rem, 3.8vw, 1.08rem);
+        line-height: 1.65;
+        font-weight: 500;
+      }
 
-  <!-- REGALO PARA APERTURA -->
-  <div class="gift-container" id="gift">
-    <div class="click-instruction">💖 ¡Toca para abrir tu sorpresa, mi Timu Timu! 💖</div>
-    <div class="box" id="boxWrapper">
-      <div class="box-lid" id="lid">
-        <div class="bow">
-          <div class="bow-left"></div>
-          <div class="bow-right"></div>
-        </div>
+      /* Botón Sorpresa de Amor */
+      .love-btn {
+        margin-top: 18px;
+        background: linear-gradient(135deg, #c9184a 0%, #ff0054 100%);
+        color: white;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(201, 24, 74, 0.4);
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .love-btn:active {
+        transform: scale(0.92);
+      }
+
+      @media (max-width: 380px) {
+        .box {
+          width: 140px;
+          height: 140px;
+        }
+        .box-lid {
+          width: 160px;
+        }
+        .snoopy-balloon {
+          width: 65px;
+          left: 4%;
+        }
+        .snoopy-heart {
+          width: 70px;
+          right: 2%;
+        }
+        .snoopy-woodstock {
+          width: 65px;
+          left: 4%;
+        }
+        .snoopy-sleep {
+          width: 80px;
+          right: 15%;
+        }
+        .message-card {
+          padding: 20px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- REGALO PARA APERTURA -->
+    <div class="gift-container" id="gift">
+      <div class="click-instruction">
+        💖 ¡Toca para abrir tu sorpresa, mi Timu Timu! 💖
       </div>
-      <div class="box-body"></div>
+      <div class="box" id="boxWrapper">
+        <div class="box-lid" id="lid">
+          <div class="bow">
+            <div class="bow-left"></div>
+            <div class="bow-right"></div>
+          </div>
+        </div>
+        <div class="box-body"></div>
+      </div>
     </div>
-  </div>
 
-  <!-- SECCIÓN PRINCIPAL: RAMO Y DEDICATORIA -->
-  <div class="flowers-card-container" id="flowerSection">
-    <div class="canvas-wrapper">
-      <canvas id="flowerCanvas"></canvas>
-      
-      <!-- STICKERS SNOOPY -->
-      <!-- 1. Snoopy Volando con Globo de Corazón -->
-      <img src="https://pngimg.com/uploads/snoopy/snoopy_PNG35.png" alt="Snoopy Balloon" class="sticker snoopy-balloon">
-      <!-- 2. Snoopy Abrazando un Corazón -->
-      <img src="https://pngimg.com/uploads/snoopy/snoopy_PNG45.png" alt="Snoopy Heart" class="sticker snoopy-heart">
-      <!-- 3. Snoopy & Woodstock -->
-      <img src="https://pngimg.com/uploads/snoopy/snoopy_PNG23.png" alt="Snoopy Woodstock" class="sticker snoopy-woodstock">
+    <!-- SECCIÓN PRINCIPAL: RAMO Y DEDICATORIA -->
+    <div class="flowers-card-container" id="flowerSection">
+      <div class="canvas-wrapper">
+        <canvas id="flowerCanvas"></canvas>
 
-      <!-- Mariposa Voleando -->
-      <div class="butterfly">🦋</div>
+        <!-- 4 STICKERS DE SNOOPY ENAMORADO -->
+        <img
+          src="https://pngimg.com/uploads/snoopy/snoopy_PNG35.png"
+          alt="Snoopy Balloon"
+          class="sticker snoopy-balloon"
+        />
+        <img
+          src="https://pngimg.com/uploads/snoopy/snoopy_PNG45.png"
+          alt="Snoopy Heart"
+          class="sticker snoopy-heart"
+        />
+        <img
+          src="https://pngimg.com/uploads/snoopy/snoopy_PNG23.png"
+          alt="Snoopy Woodstock"
+          class="sticker snoopy-woodstock"
+        />
+        <!-- Un snoopy extra descansando en el regalo -->
+        <img
+          src="https://pngimg.com/uploads/snoopy/snoopy_PNG12.png"
+          alt="Snoopy Sleep"
+          class="sticker snoopy-sleep"
+        />
+
+        <!-- Corazón Animado que vuela alrededor -->
+        <div class="floating-heart-animation">❤️</div>
+      </div>
+
+      <!-- TARJETA ROMÁNTICA -->
+      <div class="message-card" id="card">
+        <h1>¡Te amo, Yadira!</h1>
+        <h2>✨ Mi hermosa Timu Timu ✨</h2>
+        <p>
+          Estas rosas rojas son un pequeño reflejo de todo el amor que siento
+          por ti. Gracias por llenar mi vida de luz, por tus abrazos cálidos y
+          por hacerme el hombre más feliz del universo entero. ¡Eres y siempre
+          serás el amor de mi vida! ❤️🌹
+        </p>
+
+        <button class="love-btn" onclick="extraLove()">
+          <span>Enviar un beso virtual</span> 💋
+        </button>
+      </div>
     </div>
-    
-    <!-- TARJETA ROMÁNTICA -->
-    <div class="message-card" id="card">
-      <h1>¡Te amo, Yadira!</h1>
-      <h2>✨ Mi Timu Timu hermosa ✨</h2>
-      <p>Estas flores amarillas son un pedacito de sol hecho para ti, para recordarte lo infinitamente especial que eres en mi vida. Gracias por llenar mis días de alegría, de abrazos y de tu amor tan bonito. ¡Eres y siempre serás mi persona favorita! 💛 preciosa mía.</p>
-      
-      <button class="love-btn" onclick="extraLove()">
-        <span>Presiona para más amor</span> 💖
-      </button>
-    </div>
-  </div>
 
-  <script>
-    // FONDOS CON CORAZONES Y ESTRELLAS FLOTANTES
-    function createFloatingElements() {
-      const items = ['❤️', '💖', '💛', '💕', '✨', '🌸', '💗'];
-      for (let i = 0; i < 22; i++) {
-        const el = document.createElement('div');
-        el.classList.add('bg-element');
-        el.innerText = items[Math.floor(Math.random() * items.length)];
-        el.style.left = `${Math.random() * 100}vw`;
-        el.style.animationDuration = `${Math.random() * 4 + 4}s`;
-        el.style.animationDelay = `${Math.random() * 5}s`;
-        el.style.fontSize = `${Math.random() * 16 + 14}px`;
-        document.body.appendChild(el);
+    <script>
+      // FONDOS CON CORAZONES FLOTANTES
+      function createFloatingElements() {
+        const items = ["❤️", "💖", "💗", "💕", "🌹", "✨"];
+        for (let i = 0; i < 25; i++) {
+          const el = document.createElement("div");
+          el.classList.add("bg-element");
+          el.innerText = items[Math.floor(Math.random() * items.length)];
+          el.style.left = `${Math.random() * 100}vw`;
+          el.style.animationDuration = `${Math.random() * 4 + 4}s`;
+          el.style.animationDelay = `${Math.random() * 5}s`;
+          el.style.fontSize = `${Math.random() * 18 + 14}px`;
+          document.body.appendChild(el);
+        }
       }
-    }
-    createFloatingElements();
+      createFloatingElements();
 
-    const gift = document.getElementById('gift');
-    const lid = document.getElementById('lid');
-    const flowerSection = document.getElementById('flowerSection');
-    const card = document.getElementById('card');
-    const canvas = document.getElementById('flowerCanvas');
-    const ctx = canvas.getContext('2d');
+      const gift = document.getElementById("gift");
+      const lid = document.getElementById("lid");
+      const flowerSection = document.getElementById("flowerSection");
+      const card = document.getElementById("card");
+      const canvas = document.getElementById("flowerCanvas");
+      const ctx = canvas.getContext("2d");
 
-    let isOpened = false;
+      let isOpened = false;
 
-    // Configuración del tamaño del Canvas
-    function setupCanvasSize() {
-      const containerWidth = Math.min(window.innerWidth * 0.92, 460);
-      canvas.width = containerWidth;
-      canvas.height = containerWidth * 1.08;
-    }
+      // Configuración del tamaño del Canvas
+      function setupCanvasSize() {
+        const containerWidth = Math.min(window.innerWidth * 0.92, 460);
+        canvas.width = containerWidth;
+        canvas.height = containerWidth * 1.1; // Un poco más alto para las rosas
+      }
 
-    window.addEventListener('resize', () => {
+      window.addEventListener("resize", () => {
+        setupCanvasSize();
+        if (isOpened) drawBouquet();
+      });
+
       setupCanvasSize();
-      if (isOpened) drawBouquet();
-    });
 
-    setupCanvasSize();
+      // Animación de Apertura
+      gift.addEventListener("click", () => {
+        if (isOpened) return;
+        isOpened = true;
 
-    // Animación de Apertura
-    gift.addEventListener('click', () => {
-      if (isOpened) return;
-      isOpened = true;
+        gsap
+          .timeline()
+          .to("#boxWrapper", { scale: 0.9, duration: 0.15 })
+          .to("#boxWrapper", { scale: 1.08, duration: 0.15 })
+          .to(lid, {
+            y: -120,
+            rotation: -35,
+            opacity: 0,
+            duration: 0.7,
+            ease: "back.out(1.8)",
+          })
+          .to(
+            gift,
+            {
+              scale: 0,
+              opacity: 0,
+              duration: 0.4,
+              display: "none",
+              ease: "power2.in",
+            },
+            "-=0.3",
+          )
+          .call(() => {
+            flowerSection.style.display = "flex";
+            launchConfettiExplosion();
+            animateFlowersAndCard();
+          });
+      });
 
-      gsap.timeline()
-        .to("#boxWrapper", { scale: 0.9, duration: 0.15 })
-        .to("#boxWrapper", { scale: 1.08, duration: 0.15 })
-        .to(lid, {
-          y: -120,
-          rotation: -35,
-          opacity: 0,
-          duration: 0.7,
-          ease: "back.out(1.8)"
-        })
-        .to(gift, {
-          scale: 0,
-          opacity: 0,
-          duration: 0.4,
-          display: "none",
-          ease: "power2.in"
-        }, "-=0.3")
-        .call(() => {
-          flowerSection.style.display = 'flex';
-          launchConfettiExplosion();
-          animateFlowersAndCard();
+      // Lluvia de Confeti 100% Amor (Rojo, Rosado, Blanco)
+      function launchConfettiExplosion() {
+        const count = window.innerWidth < 480 ? 150 : 220;
+        confetti({
+          particleCount: count,
+          spread: 100,
+          origin: { y: 0.55 },
+          colors: [
+            "#c9184a",
+            "#ff0054",
+            "#ff4d6d",
+            "#ff758f",
+            "#ffffff",
+            "#a4133c",
+          ],
         });
-    });
+      }
 
-    // Lluvia de Confeti Romántico
-    function launchConfettiExplosion() {
-      const count = window.innerWidth < 480 ? 140 : 200;
-      confetti({
-        particleCount: count,
-        spread: 100,
-        origin: { y: 0.55 },
-        colors: ['#ffd700', '#ff4d6d', '#ff758f', '#ffca28', '#ffffff', '#ff0054']
-      });
-    }
+      // Botón interactivo de besos
+      function extraLove() {
+        confetti({
+          particleCount: 60,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 },
+          colors: ["#ff0054", "#ffffff"],
+        });
+        confetti({
+          particleCount: 60,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 },
+          colors: ["#ff0054", "#ffffff"],
+        });
+      }
 
-    // Botón interactivo extra amor
-    function extraLove() {
-      confetti({
-        particleCount: 50,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0 }
-      });
-      confetti({
-        particleCount: 50,
-        angle: 120,
-        spread: 55,
-        origin: { x: 1 }
-      });
-    }
-
-    // Dibujar Pétalos con forma de Corazón
-    function drawHeartPetal(ctx, length, width) {
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.bezierCurveTo(-width / 2, -length / 3, -width, -length * 0.7, 0, -length);
-      ctx.bezierCurveTo(width, -length * 0.7, width / 2, -length / 3, 0, 0);
-      ctx.fill();
-    }
-
-    // Dibujar Girasol
-    function drawSunflower(x, y, scale, angle = 0) {
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(angle);
-      ctx.scale(scale, scale);
-
-      // Tallo verde
-      ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.quadraticCurveTo(-10, 90, -5, 180);
-      ctx.lineWidth = 12;
-      ctx.strokeStyle = "#388e3c";
-      ctx.stroke();
-
-      // Hojas verdes
-      function drawLeaf(lx, ly, rot, flip = false) {
-        ctx.save();
-        ctx.translate(lx, ly);
-        ctx.rotate(rot);
-        if (flip) ctx.scale(-1, 1);
+      // Dibujar Pétalos Suaves para las Rosas
+      function drawRosePetal(ctx, length, width) {
         ctx.beginPath();
-        ctx.ellipse(0, 0, 28, 14, Math.PI / 4, 0, Math.PI * 2);
-        ctx.fillStyle = "#2e7d32";
+        ctx.moveTo(0, 0);
+        ctx.bezierCurveTo(
+          -width / 1.5,
+          -length / 2,
+          -width,
+          -length * 0.8,
+          0,
+          -length,
+        );
+        ctx.bezierCurveTo(width, -length * 0.8, width / 1.5, -length / 2, 0, 0);
         ctx.fill();
-        ctx.restore();
       }
-      drawLeaf(-20, 90, 0.2);
-      drawLeaf(15, 120, -0.2, true);
 
-      // Capas de Pétalos
-      const petals = 16;
-      ctx.fillStyle = "#ffb300";
-      for (let i = 0; i < petals; i++) {
+      // Dibujar una Hermosa Rosa Roja
+      function drawRoseFlower(x, y, scale, angle = 0) {
         ctx.save();
-        ctx.rotate((Math.PI * 2) / petals * i);
-        drawHeartPetal(ctx, 48, 22);
+        ctx.translate(x, y);
+        ctx.rotate(angle);
+        ctx.scale(scale, scale);
+
+        // Tallo verde oscuro
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.quadraticCurveTo(-15, 90, -5, 180);
+        ctx.lineWidth = 14;
+        ctx.strokeStyle = "#1b4332";
+        ctx.stroke();
+
+        // Hojas de Rosa (más aserradas visualmente)
+        function drawLeaf(lx, ly, rot, flip = false) {
+          ctx.save();
+          ctx.translate(lx, ly);
+          ctx.rotate(rot);
+          if (flip) ctx.scale(-1, 1);
+          ctx.beginPath();
+          ctx.ellipse(0, 0, 30, 16, Math.PI / 5, 0, Math.PI * 2);
+          ctx.fillStyle = "#2d6a4f";
+          ctx.fill();
+          ctx.restore();
+        }
+        drawLeaf(-22, 85, 0.3);
+        drawLeaf(20, 110, -0.3, true);
+
+        // --- CAPAS DE LA ROSA ---
+        const petals = 14;
+
+        // Capa Externa (Rojo Vino Oscuro)
+        ctx.fillStyle = "#a4133c";
+        for (let i = 0; i < petals; i++) {
+          ctx.save();
+          ctx.rotate(((Math.PI * 2) / petals) * i);
+          drawRosePetal(ctx, 55, 28);
+          ctx.restore();
+        }
+
+        // Capa Media (Rojo Pasión)
+        ctx.fillStyle = "#c9184a";
+        for (let i = 0; i < petals; i++) {
+          ctx.save();
+          ctx.rotate(((Math.PI * 2) / petals) * i + 0.2);
+          drawRosePetal(ctx, 45, 24);
+          ctx.restore();
+        }
+
+        // Capa Interna (Rojo Vibrante/Rosado)
+        ctx.fillStyle = "#ff0054";
+        for (let i = 0; i < petals; i++) {
+          ctx.save();
+          ctx.rotate(((Math.PI * 2) / petals) * i + 0.4);
+          drawRosePetal(ctx, 35, 20);
+          ctx.restore();
+        }
+
+        // Capa del Centro (Capullo cerrado)
+        ctx.fillStyle = "#ff4d6d";
+        for (let i = 0; i < 8; i++) {
+          ctx.save();
+          ctx.rotate(((Math.PI * 2) / 8) * i + 0.1);
+          drawRosePetal(ctx, 22, 14);
+          ctx.restore();
+        }
+
+        // Corazón/Centro de la rosa
+        ctx.beginPath();
+        ctx.arc(0, 0, 12, 0, Math.PI * 2);
+        ctx.fillStyle = "#800f2f";
+        ctx.fill();
+
         ctx.restore();
       }
 
-      ctx.fillStyle = "#ffeb3b";
-      for (let i = 0; i < petals; i++) {
+      // Dibujar el Ramo Completo con Envoltura Rosada y Moño Rojo
+      function drawBouquetRibbon(x, y, scale) {
         ctx.save();
-        ctx.rotate(((Math.PI * 2) / petals * i) + (Math.PI / petals));
-        drawHeartPetal(ctx, 42, 20);
+        ctx.translate(x, y);
+        ctx.scale(scale, scale);
+
+        // Envoltura romántica Rosada
+        ctx.beginPath();
+        ctx.moveTo(-85, -35);
+        ctx.lineTo(85, -35);
+        ctx.lineTo(30, 130);
+        ctx.lineTo(-30, 130);
+        ctx.closePath();
+        ctx.fillStyle = "#ffc2d1";
+        ctx.fill();
+        ctx.strokeStyle = "#ff758f";
+        ctx.lineWidth = 4;
+        ctx.stroke();
+
+        // Bucles del Gran Moño (Rojo Pasión)
+        ctx.fillStyle = "#c9184a";
+        ctx.beginPath();
+        ctx.ellipse(-30, 10, 32, 20, -Math.PI / 6, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.ellipse(30, 10, 32, 20, Math.PI / 6, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Cintas colgantes
+        ctx.beginPath();
+        ctx.moveTo(-5, 15);
+        ctx.lineTo(-35, 75);
+        ctx.lineTo(-15, 75);
+        ctx.lineTo(0, 15);
+        ctx.fillStyle = "#a4133c";
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(5, 15);
+        ctx.lineTo(35, 75);
+        ctx.lineTo(15, 75);
+        ctx.lineTo(0, 15);
+        ctx.fill();
+
+        // Nudo central del Moño
+        ctx.beginPath();
+        ctx.arc(0, 12, 12, 0, Math.PI * 2);
+        ctx.fillStyle = "#ff0054";
+        ctx.fill();
+
         ctx.restore();
       }
 
-      // Centro
-      ctx.beginPath();
-      ctx.arc(0, 0, 24, 0, Math.PI * 2);
-      ctx.fillStyle = "#5d4037";
-      ctx.fill();
+      // Renderizar las Rosas
+      function drawBouquet() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      ctx.beginPath();
-      ctx.arc(0, 0, 18, 0, Math.PI * 2);
-      ctx.fillStyle = "#3e2723";
-      ctx.fill();
+        const w = canvas.width;
+        const h = canvas.height;
+        const baseScale = w / 420;
 
-      // Destello central
-      ctx.fillStyle = "#ffca28";
-      ctx.beginPath();
-      ctx.arc(0, 0, 8, 0, Math.PI * 2);
-      ctx.fill();
+        // Rosas traseras
+        drawRoseFlower(w * 0.25, h * 0.38, 0.85 * baseScale, -0.35);
+        drawRoseFlower(w * 0.75, h * 0.38, 0.85 * baseScale, 0.35);
 
-      ctx.restore();
-    }
+        // Rosas medias
+        drawRoseFlower(w * 0.35, h * 0.3, 0.98 * baseScale, -0.15);
+        drawRoseFlower(w * 0.65, h * 0.3, 0.98 * baseScale, 0.15);
 
-    // Dibujar el Ramo Completo con Envoltura y Moño
-    function drawBouquetRibbon(x, y, scale) {
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.scale(scale, scale);
+        // Rosa Principal Superior
+        drawRoseFlower(w * 0.5, h * 0.2, 1.2 * baseScale, 0);
 
-      // Envoltura estilo Craft Rosado
-      ctx.beginPath();
-      ctx.moveTo(-80, -35);
-      ctx.lineTo(80, -35);
-      ctx.lineTo(28, 125);
-      ctx.lineTo(-28, 125);
-      ctx.closePath();
-      ctx.fillStyle = "#ffe3ec";
-      ctx.fill();
-      ctx.strokeStyle = "#ffb3c1";
-      ctx.lineWidth = 3;
-      ctx.stroke();
+        // Envoltura y Moño en la base
+        drawBouquetRibbon(w * 0.5, h * 0.55, 1.1 * baseScale);
+      }
 
-      // Bucles del Moño
-      ctx.fillStyle = "#ff4d6d";
-      ctx.beginPath();
-      ctx.ellipse(-28, 10, 30, 18, -Math.PI / 6, 0, Math.PI * 2);
-      ctx.fill();
+      // Animaciones de entrada de GSAP
+      function animateFlowersAndCard() {
+        drawBouquet();
 
-      ctx.beginPath();
-      ctx.ellipse(28, 10, 30, 18, Math.PI / 6, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Cintas
-      ctx.beginPath();
-      ctx.moveTo(-5, 15);
-      ctx.lineTo(-28, 65);
-      ctx.lineTo(-12, 65);
-      ctx.lineTo(0, 15);
-      ctx.fillStyle = "#c9184a";
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.moveTo(5, 15);
-      ctx.lineTo(28, 65);
-      ctx.lineTo(12, 65);
-      ctx.lineTo(0, 15);
-      ctx.fill();
-
-      // Centro del Moño
-      ctx.beginPath();
-      ctx.arc(0, 12, 11, 0, Math.PI * 2);
-      ctx.fillStyle = "#ff758f";
-      ctx.fill();
-
-      ctx.restore();
-    }
-
-    // Renderizar Flores
-    function drawBouquet() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      const w = canvas.width;
-      const h = canvas.height;
-      const baseScale = w / 420;
-
-      // Flores traseras
-      drawSunflower(w * 0.28, h * 0.40, 0.82 * baseScale, -0.3);
-      drawSunflower(w * 0.72, h * 0.40, 0.82 * baseScale, 0.3);
-
-      // Flores medias
-      drawSunflower(w * 0.38, h * 0.33, 0.95 * baseScale, -0.12);
-      drawSunflower(w * 0.62, h * 0.33, 0.95 * baseScale, 0.12);
-
-      // Flor Principal
-      drawSunflower(w * 0.50, h * 0.24, 1.15 * baseScale, 0);
-
-      // Gran Moño
-      drawBouquetRibbon(w * 0.50, h * 0.58, 1.1 * baseScale);
-    }
-
-    // Entradas GSAP
-    function animateFlowersAndCard() {
-      drawBouquet();
-
-      gsap.timeline()
-        .to(flowerSection, { opacity: 1, duration: 0.1 })
-        .from(canvas, {
-          scale: 0.1,
-          y: 100,
-          duration: 1.3,
-          ease: "elastic.out(1, 0.45)"
-        })
-        .from(".sticker", {
-          scale: 0,
-          stagger: 0.18,
-          duration: 0.8,
-          ease: "back.out(2)"
-        }, "-=0.6")
-        .to(card, {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out"
-        }, "-=0.6");
-    }
-  </script>
-</body>
+        gsap
+          .timeline()
+          .to(flowerSection, { opacity: 1, duration: 0.1 })
+          .from(canvas, {
+            scale: 0.1,
+            y: 100,
+            duration: 1.3,
+            ease: "elastic.out(1, 0.45)",
+          })
+          .from(
+            ".sticker",
+            {
+              scale: 0,
+              stagger: 0.15,
+              duration: 0.8,
+              ease: "back.out(1.5)",
+            },
+            "-=0.6",
+          )
+          .to(
+            card,
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.8,
+              ease: "power3.out",
+            },
+            "-=0.6",
+          );
+      }
+    </script>
+  </body>
 </html>
