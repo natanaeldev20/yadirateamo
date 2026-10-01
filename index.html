@@ -56,7 +56,6 @@
         z-index: 10;
       }
 
-      /* Elementos flotantes de fondo */
       .bg-element {
         position: fixed;
         pointer-events: none;
@@ -93,6 +92,13 @@
       .btn-main:active {
         transform: scale(0.95);
       }
+      .btn-main:disabled {
+        background: #ffb3c6;
+        cursor: not-allowed;
+        box-shadow: none;
+        transform: none;
+      }
+
       .btn-gold {
         background: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
         color: #590d22;
@@ -119,6 +125,18 @@
         cursor: pointer;
         z-index: 50;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      @keyframes pulseGlow {
+        0% {
+          transform: scale(0.98);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1.05);
+          opacity: 1;
+          text-shadow: 0 0 15px #ff4d6d;
+        }
       }
 
       /* --- PANTALLA 1: INICIO --- */
@@ -210,6 +228,7 @@
         align-items: center;
         justify-content: center;
       }
+
       .day-btn.has-gift {
         background: #ff0054;
         color: white;
@@ -217,6 +236,21 @@
         box-shadow: 0 4px 10px rgba(255, 0, 84, 0.4);
         animation: pulseDay 2s infinite;
       }
+      .day-btn.has-gift-blue {
+        background: #1e3a8a;
+        color: white;
+        border-color: #312e81;
+        box-shadow: 0 4px 10px rgba(30, 58, 138, 0.4);
+        animation: pulseDay 2s infinite;
+      }
+      .day-btn.has-gift-purple {
+        background: #7c3aed;
+        color: white;
+        border-color: #4c1d95;
+        box-shadow: 0 4px 10px rgba(124, 58, 237, 0.4);
+        animation: pulseDay 2s infinite;
+      }
+
       @keyframes pulseDay {
         0% {
           transform: scale(1);
@@ -229,10 +263,7 @@
         }
       }
 
-      /* --- PANTALLA 3: DÍA 28 (RAMO) --- */
-      #detail-screen {
-        justify-content: center;
-      }
+      /* --- ESTILOS COMPARTIDOS DÍA 28, 29, 30 --- */
       .gift-container {
         position: relative;
         cursor: pointer;
@@ -251,18 +282,6 @@
         text-align: center;
         animation: pulseGlow 1.5s infinite alternate;
       }
-      @keyframes pulseGlow {
-        0% {
-          transform: scale(0.98);
-          opacity: 0.8;
-        }
-        100% {
-          transform: scale(1.05);
-          opacity: 1;
-          text-shadow: 0 0 15px #ff4d6d;
-        }
-      }
-
       .box {
         position: relative;
         width: 170px;
@@ -365,7 +384,7 @@
         color: #a4133c;
       }
 
-      /* --- PANTALLA 4: DÍA 29 (3 REGALOS) --- */
+      /* DÍA 29 REGALOS MULTIPLES */
       #multi-gifts-screen {
         justify-content: flex-start;
         padding-top: 80px;
@@ -383,8 +402,8 @@
         color: #c9184a;
         margin-bottom: 40px;
         font-weight: 600;
+        padding: 0 15px;
       }
-
       .three-gifts-container {
         display: flex;
         flex-wrap: wrap;
@@ -412,7 +431,6 @@
         border-radius: 15px;
         border: 1px solid #ffb3c6;
       }
-
       .mini-box {
         position: relative;
         width: 90px;
@@ -461,84 +479,12 @@
         background: #ff4d6d;
       }
 
-      /* MODAL CUPÓN DÍA 29 */
-      .coupon-modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(89, 13, 34, 0.7);
-        backdrop-filter: blur(5px);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        z-index: 100;
-        opacity: 0;
-      }
-      .coupon-card {
-        background: linear-gradient(135deg, #ffffff 0%, #fff0f5 100%);
-        width: 90%;
-        max-width: 380px;
-        padding: 30px 25px;
-        border-radius: 20px;
-        text-align: center;
-        position: relative;
-        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
-        border: 3px dashed #ff4d6d;
-        transform: scale(0.8);
-        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      }
-      .coupon-snoopy {
-        position: absolute;
-        top: -60px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 120px;
-        filter: drop-shadow(0 10px 15px rgba(255, 0, 84, 0.3));
-        animation: floatSplash 3s infinite alternate;
-      }
-      .coupon-title {
-        font-family: "Dancing Script", cursive;
-        font-size: 2.5rem;
-        color: #c9184a;
-        margin: 40px 0 10px 0;
-        line-height: 1.1;
-      }
-      .coupon-desc {
-        font-size: 1.05rem;
-        color: #590d22;
-        font-weight: 500;
-        line-height: 1.5;
-        margin-bottom: 25px;
-      }
-      .coupon-hearts {
-        position: absolute;
-        font-size: 1.5rem;
-        animation: pulseDay 1.5s infinite;
-      }
-
-      /* --- PANTALLA 5: DÍA 30 (FRASCO MÁGICO Y CARTA DE PROMESA) --- */
+      /* DÍA 30 FRASCO */
       #day30-screen {
         justify-content: flex-start;
         padding-top: 70px;
         text-align: center;
       }
-      .day30-title {
-        font-family: "Dancing Script", cursive;
-        font-size: 2.8rem;
-        color: #a4133c;
-        margin-bottom: 5px;
-      }
-      .day30-subtitle {
-        font-size: 0.95rem;
-        color: #c9184a;
-        font-weight: 600;
-        margin-bottom: 25px;
-        padding: 0 20px;
-      }
-
-      /* Frasco Mágico */
       .jar-wrapper {
         position: relative;
         width: 180px;
@@ -572,7 +518,6 @@
         background: #e0a96d;
         border-radius: 8px;
         border: 3px solid #b37d46;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
         z-index: 5;
       }
       .jar-ribbon {
@@ -585,20 +530,12 @@
         background: #ff0054;
         z-index: 6;
         border-radius: 4px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-      }
-      .jar-inside-hearts {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
       }
       .floating-jar-heart {
         position: absolute;
         font-size: 1.6rem;
         animation: floatInside 3s infinite ease-in-out alternate;
       }
-
       @keyframes floatInside {
         0% {
           transform: translateY(10px) scale(0.9);
@@ -610,89 +547,190 @@
         }
       }
 
-      .reasons-counter {
-        font-size: 1.1rem;
-        font-weight: 700;
-        color: #a4133c;
+      /* DÍA 1 DE OCTUBRE (ARÁNDANOS) */
+      #day1oct-screen {
+        justify-content: flex-start;
+        padding-top: 60px;
+        text-align: center;
+      }
+      .blueberry-title {
+        font-family: "Dancing Script", cursive;
+        font-size: 2.8rem;
+        color: #1e3a8a;
+        margin-bottom: 5px;
+        text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
+      }
+      .blueberry-subtitle {
+        font-size: 0.95rem;
+        color: #3730a3;
+        font-weight: 600;
         margin-bottom: 20px;
-        background: rgba(255, 255, 255, 0.7);
-        padding: 6px 20px;
+        padding: 0 20px;
+      }
+      .harvest-game-area {
+        position: relative;
+        width: 100%;
+        max-width: 360px;
+        height: 380px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(10px);
+        border-radius: 30px;
+        border: 3px dashed #60a5fa;
+        box-shadow: 0 15px 30px rgba(30, 58, 138, 0.15);
+        overflow: hidden;
+      }
+      .interactive-blueberry {
+        position: absolute;
+        font-size: 2.5rem;
+        cursor: pointer;
+        filter: drop-shadow(0 5px 8px rgba(30, 58, 138, 0.4));
+        animation: floatBerry 2.5s infinite alternate ease-in-out;
+        user-select: none;
+        z-index: 20;
+        transition: transform 0.1s;
+      }
+      .interactive-blueberry:active {
+        transform: scale(0.8);
+      }
+      @keyframes floatBerry {
+        0% {
+          transform: translateY(0) rotate(-5deg);
+        }
+        100% {
+          transform: translateY(-12px) rotate(5deg);
+        }
+      }
+      .snoopy-basket {
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 140px;
+        filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+        z-index: 10;
+      }
+      .harvest-counter {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: #1e3a8a;
+        margin-top: 20px;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 8px 25px;
         border-radius: 20px;
-        border: 1px solid #ffb3c6;
+        border: 2px solid #93c5fd;
         display: inline-block;
+        box-shadow: 0 5px 15px rgba(30, 58, 138, 0.1);
       }
 
-      /* Modal Carta de Promesa Día 30 */
-      .letter-modal-overlay {
+      /* DÍA 2 DE OCTUBRE (JUEGO DE VASOS / TRILE) */
+      #day2oct-screen {
+        justify-content: flex-start;
+        padding-top: 50px;
+        text-align: center;
+      }
+      .cups-title {
+        font-family: "Dancing Script", cursive;
+        font-size: 2.8rem;
+        color: #7c3aed;
+        margin-bottom: 5px;
+        text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
+      }
+      .cups-subtitle {
+        font-size: 0.95rem;
+        color: #4c1d95;
+        font-weight: 600;
+        margin-bottom: 30px;
+        padding: 0 20px;
+      }
+
+      .cup-game-container {
+        position: relative;
+        width: 320px;
+        height: 160px;
+        margin: 0 auto 30px auto;
+        background: rgba(255, 255, 255, 0.4);
+        border-radius: 25px;
+        border-bottom: 8px solid #ddd6fe;
+        box-shadow: 0 10px 30px rgba(124, 58, 237, 0.15);
+      }
+      .cup-wrapper {
+        position: absolute;
+        bottom: 0;
+        width: 80px;
+        height: 110px;
+        cursor: pointer;
+        z-index: 10;
+      }
+      .the-cup {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #a78bfa, #7c3aed);
+        border-radius: 15px 15px 5px 5px;
+        position: relative;
+        z-index: 2;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        box-shadow:
+          0 10px 20px rgba(0, 0, 0, 0.2),
+          inset 0 5px 10px rgba(255, 255, 255, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .the-cup.lift {
+        transform: translateY(-75px);
+      }
+      .cup-heart {
+        font-size: 2rem;
+        filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+      }
+      .the-berry {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 3.5rem;
+        z-index: 1;
+        display: none;
+        filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
+      }
+
+      /* MODAL GENERAL COMPARTIDO */
+      .modal-overlay {
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background: rgba(89, 13, 34, 0.85);
-        backdrop-filter: blur(8px);
+        background: rgba(89, 13, 34, 0.7);
+        backdrop-filter: blur(5px);
         display: none;
         align-items: center;
         justify-content: center;
-        z-index: 120;
+        z-index: 100;
         opacity: 0;
         padding: 20px;
       }
-      .letter-card {
+      .modal-card {
         background: linear-gradient(135deg, #ffffff 0%, #fff0f5 100%);
         width: 100%;
-        max-width: 420px;
+        max-width: 400px;
         padding: 35px 25px;
-        border-radius: 25px;
+        border-radius: 20px;
         text-align: center;
         position: relative;
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
-        border: 3px solid #ff758f;
-        max-height: 85vh;
-        overflow-y: auto;
+        border: 3px dashed #ff4d6d;
+        transform: scale(0.8);
+        transition:
+          background 0.3s,
+          border-color 0.3s;
       }
-      .letter-title {
-        font-family: "Dancing Script", cursive;
-        font-size: 2.8rem;
-        color: #c9184a;
-        margin-bottom: 15px;
-      }
-      .letter-body {
-        font-size: 1rem;
-        color: #590d22;
-        line-height: 1.7;
-        font-weight: 400;
-        text-align: justify;
-        margin-bottom: 25px;
-      }
-
-      /* Stickers Snoopy Globales */
       .sticker {
         position: absolute;
         z-index: 15;
         pointer-events: none;
         filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.25));
-      }
-      .snoopy-balloon {
-        top: 2%;
-        left: 8%;
-        width: 85px;
-        transform: rotate(-10deg);
-      }
-      .snoopy-heart {
-        bottom: 25%;
-        right: 5%;
-        width: 90px;
-      }
-      .snoopy-woodstock {
-        bottom: 12%;
-        left: 8%;
-        width: 85px;
-      }
-      .snoopy-sleep {
-        bottom: -5%;
-        right: 25%;
-        width: 100px;
       }
     </style>
   </head>
@@ -738,9 +776,7 @@
         ⬅️ Volver
       </button>
       <div class="gift-container" id="gift-28">
-        <div class="click-instruction">
-          💖 ¡Toca para abrir la sorpresa del 28! 💖
-        </div>
+        <div class="click-instruction">💖 ¡Toca para abrir! 💖</div>
         <div class="box" id="boxWrapper-28">
           <div class="box-lid" id="lid-28">
             <div class="bow">
@@ -752,30 +788,12 @@
         </div>
       </div>
       <div class="flowers-card-container" id="flowerSection">
-        <div class="canvas-wrapper">
-          <canvas id="flowerCanvas"></canvas>
-          <img
-            src="https://pngimg.com/uploads/snoopy/snoopy_PNG35.png"
-            class="sticker snoopy-balloon"
-          />
-          <img
-            src="https://pngimg.com/uploads/snoopy/snoopy_PNG45.png"
-            class="sticker snoopy-heart"
-          />
-          <img
-            src="https://pngimg.com/uploads/snoopy/snoopy_PNG23.png"
-            class="sticker snoopy-woodstock"
-          />
-          <img
-            src="https://pngimg.com/uploads/snoopy/snoopy_PNG12.png"
-            class="sticker snoopy-sleep"
-          />
-        </div>
+        <div class="canvas-wrapper"><canvas id="flowerCanvas"></canvas></div>
         <div class="message-card" id="card-28">
           <h1>¡Te amo, Yadira!</h1>
           <p>
             Estas rosas rojas son el inicio de nuestra cuenta regresiva de amor.
-            Gracias por hacerme tan feliz. ¡Eres el amor de mi vida! ❤️🌹
+            ¡Eres el amor de mi vida! ❤️🌹
           </p>
         </div>
       </div>
@@ -786,12 +804,10 @@
       <button class="back-btn" onclick="goToScreen('calendar-screen')">
         ⬅️ Volver
       </button>
-
       <h1 class="gifts-title">3 Deseos de Amor</h1>
       <p class="gifts-subtitle">
         ¡Abre tus regalos mágicos de hoy, mi Timu Timu! ✨
       </p>
-
       <div class="three-gifts-container">
         <div class="mini-gift-wrapper gift-1" onclick="openCoupon('massage')">
           <div class="mini-box">
@@ -817,17 +833,15 @@
       </div>
     </div>
 
-    <!-- PANTALLA 5: DÍA 30 (FRASCO MÁGICO DE RAZONES + CARTA) -->
+    <!-- PANTALLA 5: DÍA 30 (FRASCO) -->
     <div id="day30-screen" class="screen">
       <button class="back-btn" onclick="goToScreen('calendar-screen')">
         ⬅️ Volver
       </button>
-
-      <h1 class="day30-title">El Frasco Mágico ✨</h1>
-      <p class="day30-subtitle">
-        Toca el frasco para sacar una razón por la que te amo tanto...
+      <h1 class="gifts-title" style="margin-top: 10px">El Frasco Mágico ✨</h1>
+      <p class="gifts-subtitle">
+        Toca el frasco para sacar una razón por la que te amo...
       </p>
-
       <div class="jar-wrapper" onclick="extractHeartReason()">
         <div class="jar-lid"></div>
         <div class="jar-ribbon"></div>
@@ -846,106 +860,184 @@
               style="top: 65%; left: 30%; animation-delay: 1s"
               >💕</span
             >
-            <span
-              class="floating-jar-heart"
-              style="top: 30%; left: 70%; animation-delay: 1.5s"
-              >✨</span
-            >
-            <span
-              class="floating-jar-heart"
-              style="top: 75%; left: 65%; animation-delay: 0.8s"
-              >💗</span
-            >
           </div>
           <img
             src="https://pngimg.com/uploads/snoopy/snoopy_PNG41.png"
-            style="
-              width: 90px;
-              z-index: 2;
-              filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.15));
-            "
+            style="width: 90px; z-index: 2"
           />
         </div>
       </div>
-
-      <div class="reasons-counter" id="reasonsCounter">Descubiertas: 0 / 5</div>
-
+      <div
+        class="harvest-counter"
+        id="reasonsCounter"
+        style="color: #a4133c; border-color: #ffb3c6"
+      >
+        Descubiertas: 0 / 5
+      </div>
       <div
         id="finalPromiseBtnContainer"
-        style="display: none; margin-top: 10px"
+        style="display: none; margin-top: 15px"
       >
         <button class="btn-gold" onclick="openFinalLetter()">
-          ✨ Abrir nuestra Promesa de Amor ❤️
+          ✨ Abrir nuestra Promesa ❤️
         </button>
       </div>
     </div>
 
-    <!-- MODAL CUPONES DÍA 29 -->
-    <div class="coupon-modal-overlay" id="couponOverlay">
-      <div class="coupon-card" id="couponCard">
-        <div class="coupon-hearts" style="top: 20px; left: 20px">❤️</div>
-        <div class="coupon-hearts" style="top: 20px; right: 20px">✨</div>
-        <div class="coupon-hearts" style="bottom: 20px; left: 20px">💕</div>
-        <div class="coupon-hearts" style="bottom: 20px; right: 20px">🌹</div>
+    <!-- PANTALLA 6: 1 DE OCTUBRE (ARÁNDANOS) -->
+    <div id="day1oct-screen" class="screen">
+      <button class="back-btn" onclick="goToScreen('calendar-screen')">
+        ⬅️ Volver
+      </button>
+      <h1 class="blueberry-title">La Cosecha 🫐</h1>
+      <p class="blueberry-subtitle">
+        ¡Ayuda a Snoopy a cosechar los 5 arándanos mágicos que iniciaron nuestra
+        historia!
+      </p>
 
-        <img src="" alt="Snoopy" class="coupon-snoopy" id="couponImg" />
-        <h2 class="coupon-title" id="couponTitle">Título</h2>
-        <p class="coupon-desc" id="couponDesc">Descripción</p>
+      <div class="harvest-game-area" id="blueberryGameArea">
+        <div
+          class="interactive-blueberry"
+          style="top: 15%; left: 15%; animation-delay: 0s"
+          onclick="harvestBlueberry(this, 0)"
+        >
+          🫐
+        </div>
+        <div
+          class="interactive-blueberry"
+          style="top: 25%; right: 20%; animation-delay: 0.5s"
+          onclick="harvestBlueberry(this, 1)"
+        >
+          🫐
+        </div>
+        <div
+          class="interactive-blueberry"
+          style="top: 50%; left: 10%; animation-delay: 1s"
+          onclick="harvestBlueberry(this, 2)"
+        >
+          🫐
+        </div>
+        <div
+          class="interactive-blueberry"
+          style="top: 45%; right: 15%; animation-delay: 1.5s"
+          onclick="harvestBlueberry(this, 3)"
+        >
+          🫐
+        </div>
+        <div
+          class="interactive-blueberry"
+          style="top: 10%; left: 50%; animation-delay: 0.8s"
+          onclick="harvestBlueberry(this, 4)"
+        >
+          🫐
+        </div>
+        <img
+          src="https://pngimg.com/uploads/snoopy/snoopy_PNG23.png"
+          class="snoopy-basket"
+          alt="Snoopy Basket"
+        />
+      </div>
+      <div class="harvest-counter" id="blueberryCounter">Cosechados: 0 / 5</div>
+    </div>
 
-        <button class="btn-main" onclick="closeCoupon()">
+    <!-- PANTALLA 7: 2 DE OCTUBRE (JUEGO VASOS) -->
+    <div id="day2oct-screen" class="screen">
+      <button class="back-btn" onclick="goToScreen('calendar-screen')">
+        ⬅️ Volver
+      </button>
+      <h1 class="cups-title">¿Dónde está? 🫐</h1>
+      <p class="cups-subtitle">
+        ¡Sigue el vaso correcto con tu mirada, encuentra el arándano mágico y
+        gana un súper premio!
+      </p>
+
+      <div class="cup-game-container">
+        <!-- Vaso 0 -->
+        <div
+          class="cup-wrapper"
+          id="cup-wrap-0"
+          onclick="guessCup(0)"
+          style="left: 20px"
+        >
+          <div class="the-berry" id="cup-berry-0">🫐</div>
+          <div class="the-cup" id="the-cup-0">
+            <div class="cup-heart">🤍</div>
+          </div>
+        </div>
+        <!-- Vaso 1 -->
+        <div
+          class="cup-wrapper"
+          id="cup-wrap-1"
+          onclick="guessCup(1)"
+          style="left: 120px"
+        >
+          <div class="the-berry" id="cup-berry-1">🫐</div>
+          <div class="the-cup" id="the-cup-1">
+            <div class="cup-heart">🤍</div>
+          </div>
+        </div>
+        <!-- Vaso 2 -->
+        <div
+          class="cup-wrapper"
+          id="cup-wrap-2"
+          onclick="guessCup(2)"
+          style="left: 220px"
+        >
+          <div class="the-berry" id="cup-berry-2">🫐</div>
+          <div class="the-cup" id="the-cup-2">
+            <div class="cup-heart">🤍</div>
+          </div>
+        </div>
+      </div>
+
+      <button
+        class="btn-main"
+        id="start-cups-btn"
+        onclick="initCupsGame()"
+        style="background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%)"
+      >
+        ¡Jugar ahora! 🎲
+      </button>
+    </div>
+
+    <!-- MODAL GENERAL COMPARTIDO -->
+    <div class="modal-overlay" id="generalModal">
+      <div class="modal-card" id="generalCard">
+        <img
+          src=""
+          class="sticker"
+          style="
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            position: absolute;
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.2));
+          "
+          id="modalImg"
+        />
+        <h2
+          id="modalTitle"
+          style="
+            font-family: &quot;Dancing Script&quot;, cursive;
+            font-size: 2.5rem;
+            margin-top: 20px;
+          "
+        >
+          Título
+        </h2>
+        <div
+          id="modalBody"
+          style="font-size: 1rem; margin: 15px 0 25px 0; line-height: 1.5"
+        ></div>
+        <button class="btn-main" id="modalBtn" onclick="closeGeneralModal()">
           ¡Me encanta! 🥰
         </button>
       </div>
     </div>
 
-    <!-- MODAL CARTA FINAL DÍA 30 -->
-    <div class="letter-modal-overlay" id="letterOverlay">
-      <div class="letter-card" id="letterCard">
-        <img
-          src="https://pngimg.com/uploads/snoopy/snoopy_PNG36.png"
-          style="
-            width: 110px;
-            margin-bottom: 10px;
-            filter: drop-shadow(0 10px 15px rgba(255, 0, 84, 0.3));
-          "
-        />
-        <h2 class="letter-title">Mi Promesa de Amor ❤️</h2>
-        <div class="letter-body">
-          <p><strong>Mi Yadira hermosa, mi Timu Timu:</strong></p>
-          <br />
-          <p>
-            Cerrar este mes a tu lado es el regalo más hermoso que la vida me ha
-            dado. Cada día me doy cuenta de que no solo eres mi novia, eres mi
-            lugar seguro, mi paz, mi felicidad entera y la persona con la que
-            quiero compartir cada uno de mis días.
-          </p>
-          <br />
-          <p>
-            Te prometo cuidar siempre tu corazón, sacarte miles de sonrisas,
-            abrazarte bien fuerte cuando lo necesites y amarte con toda la
-            fuerza de mi alma. Gracias por ser tan única, hermosa y perfecta
-            para mí.
-          </p>
-          <br />
-          <p
-            style="
-              text-align: center;
-              font-weight: 700;
-              color: #c9184a;
-              font-size: 1.1rem;
-            "
-          >
-            ¡Te amo hoy, mañana y para siempre! 💖✨
-          </p>
-        </div>
-        <button class="btn-main" onclick="closeFinalLetter()">
-          Te amo para siempre 🥰
-        </button>
-      </div>
-    </div>
-
     <script>
-      // --- 1. FONDOS FLOTANTES ---
+      // --- 1. FONDOS ---
       function createFloatingElements() {
         const bg = document.getElementById("bg-container");
         const items = ["❤️", "💖", "💗", "💕", "🌹", "✨"];
@@ -983,7 +1075,7 @@
         });
       }
 
-      // --- 3. GENERADOR DE CALENDARIO ---
+      // --- 3. CALENDARIO ---
       const monthsData = [
         { name: "Septiembre", start: 28, end: 30, monthIndex: 8 },
         { name: "Octubre", start: 1, end: 31, monthIndex: 9 },
@@ -1020,6 +1112,15 @@
               btn.classList.add("has-gift");
               btn.innerHTML = `✨<br>${day}`;
               btn.onclick = () => goToScreen("day30-screen");
+            } else if (dateStr === "2026-10-01") {
+              btn.classList.add("has-gift-blue");
+              btn.innerHTML = `🫐<br>${day}`;
+              btn.onclick = () => goToScreen("day1oct-screen");
+            } else if (dateStr === "2026-10-02") {
+              // NUEVO DÍA: 2 DE OCTUBRE
+              btn.classList.add("has-gift-purple");
+              btn.innerHTML = `🎩<br>${day}`;
+              btn.onclick = () => goToScreen("day2oct-screen");
             } else {
               btn.innerHTML = `${day}`;
               btn.onclick = () => showLockedMessage(day, month.name);
@@ -1034,171 +1135,330 @@
       function showLockedMessage(day, month) {
         Swal.fire({
           title: "¡Paciencia, mi amor! 🥺",
-          text: `La sorpresa del ${day} de ${month} aún está preparando su magia. ¡Te amo! ❤️`,
+          text: `La sorpresa del ${day} de ${month} aún se está preparando.`,
           imageUrl: "https://pngimg.com/uploads/snoopy/snoopy_PNG12.png",
           imageWidth: 100,
           confirmButtonColor: "#ff0054",
-          confirmButtonText: "Esperaré 💕",
-          backdrop: `rgba(255,0,84,0.4)`,
         });
       }
       renderCalendar();
 
-      // --- 4. LÓGICA DÍA 29 (CUPONES) ---
-      const coupons = {
-        massage: {
-          img: "https://pngimg.com/uploads/snoopy/snoopy_PNG41.png",
-          title: "¡Un Masaje Gratis!",
-          desc: "💆‍♀️✨ ¡Vale por un masaje relajante completo! Mis manos están listas para quitarte todo el estrés y mimarte como la verdadera reina que eres. ¡Canjéalo cuando quieras, mi amor!",
-        },
-        kiss: {
-          img: "https://pngimg.com/uploads/snoopy/snoopy_PNG45.png",
-          title: "¡Lluvia de Besos!",
-          desc: '💋✨ ¡Vale por un millón de besos! Y abrazos infinitos. Este cupón es válido para besos de buenos días, de buenas noches y "porque sí". Te amo muchísimo, mi Yadira.',
-        },
-        date: {
-          img: "https://pngimg.com/uploads/snoopy/snoopy_PNG36.png",
-          title: "¡Una Cita Mágica!",
-          desc: "🎟️✨ ¡Tú eliges el lugar, yo pongo todo el amor! Vámonos de paseo, a comer algo rico y a seguir creando los recuerdos más hermosos juntos. ¡Prepara tu sonrisa!",
-        },
-      };
+      // --- SISTEMA DE MODALES REUTILIZABLE ---
+      const gModal = document.getElementById("generalModal");
+      const gCard = document.getElementById("generalCard");
 
-      const overlay = document.getElementById("couponOverlay");
-      const cardModal = document.getElementById("couponCard");
+      function openModal(
+        img,
+        title,
+        bodyHTML,
+        btnText,
+        colorTheme,
+        bgStyle = "",
+      ) {
+        document.getElementById("modalImg").src = img;
+        document.getElementById("modalTitle").innerHTML = title;
+        document.getElementById("modalTitle").style.color = colorTheme;
+        document.getElementById("modalBody").innerHTML = bodyHTML;
+        document.getElementById("modalBtn").innerText = btnText;
+        document.getElementById("modalBtn").style.background =
+          `linear-gradient(135deg, ${colorTheme} 0%, #000 100%)`;
 
-      function openCoupon(type) {
-        const data = coupons[type];
-        document.getElementById("couponImg").src = data.img;
-        document.getElementById("couponTitle").innerHTML = data.title;
-        document.getElementById("couponDesc").innerHTML = data.desc;
-        overlay.style.display = "flex";
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ["#ff0054", "#ff758f", "#c9184a"],
-        });
-        gsap.to(overlay, { opacity: 1, duration: 0.3 });
-        gsap.to(cardModal, { scale: 1, duration: 0.5, ease: "back.out(1.5)" });
+        if (bgStyle) {
+          gCard.style.background = bgStyle;
+          gCard.style.borderColor = colorTheme;
+        } else {
+          gCard.style.background =
+            "linear-gradient(135deg, #ffffff 0%, #fff0f5 100%)";
+          gCard.style.borderColor = "#ff4d6d";
+        }
+
+        gModal.style.display = "flex";
+        gsap.to(gModal, { opacity: 1, duration: 0.3 });
+        gsap.to(gCard, { scale: 1, duration: 0.5, ease: "back.out(1.5)" });
       }
-
-      function closeCoupon() {
-        gsap.to(cardModal, { scale: 0.8, duration: 0.3, ease: "power2.in" });
-        gsap.to(overlay, {
+      function closeGeneralModal() {
+        gsap.to(gCard, { scale: 0.8, duration: 0.3, ease: "power2.in" });
+        gsap.to(gModal, {
           opacity: 0,
           duration: 0.3,
           delay: 0.1,
           onComplete: () => {
-            overlay.style.display = "none";
+            gModal.style.display = "none";
           },
         });
       }
 
-      // --- 5. LÓGICA DÍA 30 (FRASCO DE RAZONES Y CARTA) ---
-      const loveReasons = [
-        "Porque tu sonrisa tiene la magia de cambiar cualquier día triste en el más feliz.",
-        "Por la ternura inmensa que hay en tu corazón y la forma única en la que me miras.",
-        "Porque a tu lado siento una paz que nunca antes había conocido.",
-        "Por cada abrazo tuyo que me recarga la vida y me hace sentir en casa.",
-        "¡Porque simplemente eres el amor de mi vida y mi persona favorita en el mundo!",
-      ];
-      let discoveredReasonsCount = 0;
-      let availableReasons = [...loveReasons];
-
-      function extractHeartReason() {
-        if (availableReasons.length === 0) {
-          Swal.fire({
-            title: "¡Ya las descubriste todas! 🥰",
-            text: "Ahora es momento de abrir tu Promesa de Amor especial abajo ✨",
-            imageUrl: "https://pngimg.com/uploads/snoopy/snoopy_PNG45.png",
-            imageWidth: 100,
-            confirmButtonColor: "#ff0054",
-            confirmButtonText: "¡Ver Promesa! ❤️",
-          });
-          return;
-        }
-
-        const reason = availableReasons.shift();
-        discoveredReasonsCount++;
-        document.getElementById("reasonsCounter").innerText =
-          `Descubiertas: ${discoveredReasonsCount} / 5`;
-
-        // Efecto confeti leve
+      // --- LÓGICA DÍA 29 ---
+      function openCoupon(type) {
+        const data = {
+          massage: {
+            img: "https://pngimg.com/uploads/snoopy/snoopy_PNG41.png",
+            title: "¡Un Masaje Gratis!",
+            desc: "💆‍♀️✨ ¡Vale por un masaje relajante completo para mi reina!",
+          },
+          kiss: {
+            img: "https://pngimg.com/uploads/snoopy/snoopy_PNG45.png",
+            title: "¡Lluvia de Besos!",
+            desc: "💋✨ ¡Vale por un millón de besos y abrazos infinitos!",
+          },
+          date: {
+            img: "https://pngimg.com/uploads/snoopy/snoopy_PNG36.png",
+            title: "¡Una Cita Mágica!",
+            desc: "🎟️✨ ¡Tú eliges el lugar, yo pongo todo el amor! Vámonos de paseo.",
+          },
+        }[type];
         confetti({
-          particleCount: 50,
-          spread: 60,
-          origin: { y: 0.5 },
-          colors: ["#ff8fab", "#ff0054"],
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ["#ff0054", "#c9184a"],
         });
-
-        Swal.fire({
-          title: `Razón #${discoveredReasonsCount} ❤️`,
-          text: reason,
-          imageUrl: "https://pngimg.com/uploads/snoopy/snoopy_PNG45.png",
-          imageWidth: 110,
-          confirmButtonColor: "#ff0054",
-          confirmButtonText: "¡Te amo! 💕",
-          backdrop: `rgba(89, 13, 34, 0.6)`,
-        }).then(() => {
-          if (discoveredReasonsCount >= 3) {
-            const btnCont = document.getElementById("finalPromiseBtnContainer");
-            btnCont.style.display = "block";
-            gsap.fromTo(
-              btnCont,
-              { scale: 0.8, opacity: 0 },
-              { scale: 1, opacity: 1, duration: 0.5, ease: "back.out(1.5)" },
-            );
-          }
-        });
-      }
-
-      const letterOverlay = document.getElementById("letterOverlay");
-      const letterCard = document.getElementById("letterCard");
-
-      function openFinalLetter() {
-        letterOverlay.style.display = "flex";
-        confetti({
-          particleCount: 250,
-          spread: 120,
-          origin: { y: 0.5 },
-          colors: ["#ffb703", "#ff0054", "#ffffff"],
-        });
-        gsap.to(letterOverlay, { opacity: 1, duration: 0.4 });
-        gsap.fromTo(
-          letterCard,
-          { scale: 0.7, y: 50 },
-          { scale: 1, y: 0, duration: 0.5, ease: "back.out(1.4)" },
+        openModal(
+          data.img,
+          data.title,
+          `<p style="color:#590d22; font-weight:500;">${data.desc}</p>`,
+          "¡Me encanta! 🥰",
+          "#c9184a",
         );
       }
 
-      function closeFinalLetter() {
-        gsap.to(letterCard, { scale: 0.8, opacity: 0, duration: 0.3 });
-        gsap.to(letterOverlay, {
-          opacity: 0,
-          duration: 0.3,
-          onComplete: () => {
-            letterOverlay.style.display = "none";
-            letterCard.style.opacity = 1;
-          },
+      // --- LÓGICA DÍA 30 ---
+      const loveReasons = [
+        "Porque tu sonrisa cambia mi día.",
+        "Por la ternura en tu mirada.",
+        "Por la paz que siento contigo.",
+        "Por cada abrazo que me recarga.",
+        "¡Porque eres el amor de mi vida!",
+      ];
+      let discoveredReasons = 0;
+      function extractHeartReason() {
+        if (discoveredReasons >= 5) return;
+        Swal.fire({
+          title: `Razón #${discoveredReasons + 1} ❤️`,
+          text: loveReasons[discoveredReasons],
+          imageUrl: "https://pngimg.com/uploads/snoopy/snoopy_PNG45.png",
+          imageWidth: 100,
+          confirmButtonColor: "#ff0054",
         });
+        discoveredReasons++;
+        document.getElementById("reasonsCounter").innerText =
+          `Descubiertas: ${discoveredReasons} / 5`;
+        if (discoveredReasons === 5)
+          document.getElementById("finalPromiseBtnContainer").style.display =
+            "block";
+      }
+      function openFinalLetter() {
+        confetti({
+          particleCount: 200,
+          spread: 120,
+          origin: { y: 0.5 },
+          colors: ["#ffb703", "#ff0054"],
+        });
+        openModal(
+          "https://pngimg.com/uploads/snoopy/snoopy_PNG36.png",
+          "Mi Promesa de Amor ❤️",
+          `<p>Cerrar este mes a tu lado es mi mayor regalo. Te prometo cuidar siempre tu corazón y amarte con toda mi alma.</p>`,
+          "Te amo para siempre 🥰",
+          "#c9184a",
+        );
       }
 
-      // --- 6. LÓGICA DÍA 28 (RAMO) ---
+      // --- LÓGICA 1 DE OCTUBRE (ARÁNDANOS) ---
+      const blueberryMemories = [
+        "Nuestras primeras miradas...",
+        "Las risas cosechando...",
+        "Ese momento mágico...",
+        "Nuestra hermosa amistad...",
+        "¡El mejor día de mi vida!",
+      ];
+      let blueberriesCount = 0;
+      function harvestBlueberry(element, index) {
+        if (element.classList.contains("harvested")) return;
+        element.classList.add("harvested");
+        gsap.to(element, {
+          y: 200,
+          scale: 0,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power2.in",
+        });
+        blueberriesCount++;
+        document.getElementById("blueberryCounter").innerText =
+          `Cosechados: ${blueberriesCount} / 5`;
+        Swal.fire({
+          text: blueberryMemories[index],
+          backdrop: `rgba(30, 58, 138, 0.4)`,
+          timer: 2000,
+          showConfirmButton: false,
+          toast: true,
+          position: "top",
+          background: "#eff6ff",
+          color: "#1e3a8a",
+          icon: "info",
+          iconColor: "#3b82f6",
+        });
+        if (blueberriesCount === 5) {
+          setTimeout(() => {
+            confetti({
+              particleCount: 200,
+              spread: 100,
+              origin: { y: 0.5 },
+              colors: ["#1e3a8a", "#3b82f6"],
+            });
+            openModal(
+              "https://pngimg.com/uploads/snoopy/snoopy_PNG45.png",
+              "La Mejor Cosecha 🫐💙",
+              `<p style="font-weight:500; text-align:justify;">Mi Yadira hermosa, en ese campo de arándanos encontré el tesoro más valioso de toda mi vida. Gracias por darle a mi vida el color más hermoso. ¡Te amo muchísimo!</p>`,
+              "¡Te amo infinito! 🥰",
+              "#1e3a8a",
+              "linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%)",
+            );
+          }, 2200);
+        }
+      }
+
+      // --- NUEVO: LÓGICA 2 DE OCTUBRE (JUEGO DE VASOS) ---
+      let cupGameStarted = false;
+      let cupIsShuffling = false;
+      let winningCupId = 0;
+
+      // posIndices guarda en qué posición (0,1,2) se encuentra el vaso con id (0,1,2)
+      let cupPosIndices = [0, 1, 2];
+      const cupPosCoords = [20, 120, 220]; // Coordenadas en píxeles (left)
+
+      async function initCupsGame() {
+        if (cupIsShuffling) return;
+        const btn = document.getElementById("start-cups-btn");
+        btn.disabled = true;
+        btn.innerText = "¡Atenta! 👀";
+
+        // Reiniciar estado
+        cupGameStarted = false;
+        document
+          .querySelectorAll(".the-berry")
+          .forEach((b) => (b.style.display = "none"));
+        document
+          .querySelectorAll(".the-cup")
+          .forEach((c) => c.classList.remove("lift"));
+
+        // Elegir ganador aleatorio
+        winningCupId = Math.floor(Math.random() * 3);
+        document.getElementById(`cup-berry-${winningCupId}`).style.display =
+          "block";
+
+        // 1. Mostrar dónde está el arándano levantando los vasos
+        document
+          .querySelectorAll(".the-cup")
+          .forEach((c) => c.classList.add("lift"));
+
+        setTimeout(() => {
+          // Bajar vasos
+          document
+            .querySelectorAll(".the-cup")
+            .forEach((c) => c.classList.remove("lift"));
+
+          setTimeout(() => {
+            btn.innerText = "Mezclando... 🌪️";
+            startCupShuffle(btn);
+          }, 600);
+        }, 1500);
+      }
+
+      async function startCupShuffle(btn) {
+        cupIsShuffling = true;
+        const totalSwaps = 8; // Cantidad de mezclas
+        const speed = 0.3; // Velocidad de GSAP
+
+        for (let i = 0; i < totalSwaps; i++) {
+          // Elegir 2 posiciones distintas para intercambiar
+          let p1 = Math.floor(Math.random() * 3);
+          let p2 = Math.floor(Math.random() * 3);
+          while (p1 === p2) p2 = Math.floor(Math.random() * 3);
+
+          // Encontrar qué vasos están en esas posiciones
+          let cup1 = cupPosIndices.indexOf(p1);
+          let cup2 = cupPosIndices.indexOf(p2);
+
+          // Intercambiar en el array lógico
+          cupPosIndices[cup1] = p2;
+          cupPosIndices[cup2] = p1;
+
+          // Animar en el DOM
+          await Promise.all([
+            gsap.to(`#cup-wrap-${cup1}`, {
+              left: cupPosCoords[p2],
+              duration: speed,
+              ease: "power1.inOut",
+            }),
+            gsap.to(`#cup-wrap-${cup2}`, {
+              left: cupPosCoords[p1],
+              duration: speed,
+              ease: "power1.inOut",
+            }),
+          ]);
+        }
+
+        cupIsShuffling = false;
+        cupGameStarted = true;
+        btn.innerText = "¡Elige un vaso! 👆";
+      }
+
+      function guessCup(cupId) {
+        if (!cupGameStarted || cupIsShuffling) return;
+
+        // Levantar el vaso elegido
+        document.getElementById(`the-cup-${cupId}`).classList.add("lift");
+
+        if (cupId === winningCupId) {
+          // GANÓ
+          cupGameStarted = false;
+          setTimeout(() => {
+            confetti({
+              particleCount: 250,
+              spread: 150,
+              origin: { y: 0.6 },
+              colors: ["#7c3aed", "#a78bfa", "#ff0054"],
+            });
+            openModal(
+              "https://pngimg.com/uploads/snoopy/snoopy_PNG41.png",
+              "¡Ganadora! 🏆💜",
+              `<p style="color:#4c1d95; font-weight:600; text-align:center;">¡Tienes una intuición perfecta, mi reina!<br><br>Has encontrado el arándano de la suerte y, con él, te has ganado un <strong>¡Vale por una cena súper romántica pagada por mí!</strong> 🌮🍷<br><br>Te amo muchísimo.</p>`,
+              "¡Reclamar mi premio!",
+              "#7c3aed",
+              "linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%)",
+            );
+            document.getElementById("start-cups-btn").innerText =
+              "¡Volver a jugar! 🎲";
+            document.getElementById("start-cups-btn").disabled = false;
+          }, 600);
+        } else {
+          // PERDIÓ
+          Swal.fire({
+            title: "¡Uy! 🙈",
+            text: "El arándano mágico no está aquí. ¡Sigue intentándolo, mi amor!",
+            icon: "error",
+            confirmButtonText: "Probar otro",
+            confirmButtonColor: "#7c3aed",
+          }).then(() => {
+            document
+              .getElementById(`the-cup-${cupId}`)
+              .classList.remove("lift");
+          });
+        }
+      }
+
+      // --- LÓGICA DÍA 28 (RAMO - REDUCIDA PARA ESPACIO) ---
       const gift28 = document.getElementById("gift-28");
       const lid28 = document.getElementById("lid-28");
-      const flowerSection = document.getElementById("flowerSection");
       const canvas = document.getElementById("flowerCanvas");
       const ctx = canvas.getContext("2d");
       let isOpened28 = false;
-
       function setupCanvasSize() {
-        const containerWidth = Math.min(window.innerWidth * 0.92, 460);
-        canvas.width = containerWidth;
-        canvas.height = containerWidth * 1.1;
+        canvas.width = Math.min(window.innerWidth * 0.92, 460);
+        canvas.height = canvas.width * 1.1;
         if (isOpened28) drawBouquet();
       }
       window.addEventListener("resize", setupCanvasSize);
-
       gift28.addEventListener("click", () => {
         if (isOpened28) return;
         isOpened28 = true;
@@ -1206,26 +1466,14 @@
           .timeline()
           .to("#boxWrapper-28", { scale: 0.9, duration: 0.15 })
           .to("#boxWrapper-28", { scale: 1.08, duration: 0.15 })
-          .to(lid28, {
-            y: -120,
-            rotation: -35,
-            opacity: 0,
-            duration: 0.7,
-            ease: "back.out(1.8)",
-          })
+          .to(lid28, { y: -120, rotation: -35, opacity: 0, duration: 0.7 })
           .to(
             gift28,
-            {
-              scale: 0,
-              opacity: 0,
-              duration: 0.4,
-              display: "none",
-              ease: "power2.in",
-            },
+            { scale: 0, opacity: 0, duration: 0.4, display: "none" },
             "-=0.3",
           )
           .call(() => {
-            flowerSection.style.display = "flex";
+            document.getElementById("flowerSection").style.display = "flex";
             confetti({
               particleCount: 200,
               spread: 100,
@@ -1234,7 +1482,7 @@
             });
             drawBouquet();
             gsap.fromTo(
-              flowerSection,
+              document.getElementById("flowerSection"),
               { opacity: 0 },
               { opacity: 1, duration: 0.1 },
             );
@@ -1246,59 +1494,36 @@
             });
           });
       });
-
-      function drawRosePetal(ctx, length, width) {
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.bezierCurveTo(
-          -width / 1.5,
-          -length / 2,
-          -width,
-          -length * 0.8,
-          0,
-          -length,
-        );
-        ctx.bezierCurveTo(width, -length * 0.8, width / 1.5, -length / 2, 0, 0);
-        ctx.fill();
+      function drawRosePetal(c, l, w) {
+        c.beginPath();
+        c.moveTo(0, 0);
+        c.bezierCurveTo(-w / 1.5, -l / 2, -w, -l * 0.8, 0, -l);
+        c.bezierCurveTo(w, -l * 0.8, w / 1.5, -l / 2, 0, 0);
+        c.fill();
       }
-      function drawRoseFlower(x, y, scale, angle = 0) {
+      function drawRoseFlower(x, y, s, a = 0) {
         ctx.save();
         ctx.translate(x, y);
-        ctx.rotate(angle);
-        ctx.scale(scale, scale);
+        ctx.rotate(a);
+        ctx.scale(s, s);
         ctx.beginPath();
         ctx.moveTo(0, 0);
         ctx.quadraticCurveTo(-15, 90, -5, 180);
         ctx.lineWidth = 14;
         ctx.strokeStyle = "#1b4332";
         ctx.stroke();
-        const petals = 14;
         ctx.fillStyle = "#a4133c";
-        for (let i = 0; i < petals; i++) {
+        for (let i = 0; i < 14; i++) {
           ctx.save();
-          ctx.rotate(((Math.PI * 2) / petals) * i);
+          ctx.rotate(((Math.PI * 2) / 14) * i);
           drawRosePetal(ctx, 55, 28);
           ctx.restore();
         }
         ctx.fillStyle = "#c9184a";
-        for (let i = 0; i < petals; i++) {
+        for (let i = 0; i < 14; i++) {
           ctx.save();
-          ctx.rotate(((Math.PI * 2) / petals) * i + 0.2);
+          ctx.rotate(((Math.PI * 2) / 14) * i + 0.2);
           drawRosePetal(ctx, 45, 24);
-          ctx.restore();
-        }
-        ctx.fillStyle = "#ff0054";
-        for (let i = 0; i < petals; i++) {
-          ctx.save();
-          ctx.rotate(((Math.PI * 2) / petals) * i + 0.4);
-          drawRosePetal(ctx, 35, 20);
-          ctx.restore();
-        }
-        ctx.fillStyle = "#ff4d6d";
-        for (let i = 0; i < 8; i++) {
-          ctx.save();
-          ctx.rotate(((Math.PI * 2) / 8) * i + 0.1);
-          drawRosePetal(ctx, 22, 14);
           ctx.restore();
         }
         ctx.beginPath();
@@ -1307,10 +1532,10 @@
         ctx.fill();
         ctx.restore();
       }
-      function drawBouquetRibbon(x, y, scale) {
+      function drawBouquetRibbon(x, y, s) {
         ctx.save();
         ctx.translate(x, y);
-        ctx.scale(scale, scale);
+        ctx.scale(s, s);
         ctx.beginPath();
         ctx.moveTo(-85, -35);
         ctx.lineTo(85, -35);
@@ -1318,29 +1543,6 @@
         ctx.lineTo(-30, 130);
         ctx.closePath();
         ctx.fillStyle = "#ffc2d1";
-        ctx.fill();
-        ctx.strokeStyle = "#ff758f";
-        ctx.lineWidth = 4;
-        ctx.stroke();
-        ctx.fillStyle = "#c9184a";
-        ctx.beginPath();
-        ctx.ellipse(-30, 10, 32, 20, -Math.PI / 6, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.ellipse(30, 10, 32, 20, Math.PI / 6, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.beginPath();
-        ctx.moveTo(-5, 15);
-        ctx.lineTo(-35, 75);
-        ctx.lineTo(-15, 75);
-        ctx.lineTo(0, 15);
-        ctx.fillStyle = "#a4133c";
-        ctx.fill();
-        ctx.beginPath();
-        ctx.moveTo(5, 15);
-        ctx.lineTo(35, 75);
-        ctx.lineTo(15, 75);
-        ctx.lineTo(0, 15);
         ctx.fill();
         ctx.beginPath();
         ctx.arc(0, 12, 12, 0, Math.PI * 2);
@@ -1352,13 +1554,11 @@
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const w = canvas.width,
           h = canvas.height,
-          baseScale = w / 420;
-        drawRoseFlower(w * 0.25, h * 0.38, 0.85 * baseScale, -0.35);
-        drawRoseFlower(w * 0.75, h * 0.38, 0.85 * baseScale, 0.35);
-        drawRoseFlower(w * 0.35, h * 0.3, 0.98 * baseScale, -0.15);
-        drawRoseFlower(w * 0.65, h * 0.3, 0.98 * baseScale, 0.15);
-        drawRoseFlower(w * 0.5, h * 0.2, 1.2 * baseScale, 0);
-        drawBouquetRibbon(w * 0.5, h * 0.55, 1.1 * baseScale);
+          bs = w / 420;
+        drawRoseFlower(w * 0.25, h * 0.38, 0.85 * bs, -0.35);
+        drawRoseFlower(w * 0.75, h * 0.38, 0.85 * bs, 0.35);
+        drawRoseFlower(w * 0.5, h * 0.2, 1.2 * bs, 0);
+        drawBouquetRibbon(w * 0.5, h * 0.55, 1.1 * bs);
       }
     </script>
   </body>
