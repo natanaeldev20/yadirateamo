@@ -250,6 +250,48 @@
         box-shadow: 0 4px 10px rgba(124, 58, 237, 0.4);
         animation: pulseDay 2s infinite;
       }
+      .day-btn.has-gift-pink {
+        background: #db2777;
+        color: white;
+        border-color: #9d174d;
+        box-shadow: 0 4px 10px rgba(219, 39, 119, 0.4);
+        animation: pulseDay 2s infinite;
+      }
+      .day-btn.has-gift-dark {
+        background: #312e81;
+        color: white;
+        border-color: #1e1b4b;
+        box-shadow: 0 4px 10px rgba(49, 46, 129, 0.4);
+        animation: pulseDay 2s infinite;
+      }
+      .day-btn.has-gift-amber {
+        background: #d97706;
+        color: white;
+        border-color: #92400e;
+        box-shadow: 0 4px 10px rgba(217, 119, 6, 0.4);
+        animation: pulseDay 2s infinite;
+      }
+      .day-btn.has-gift-teal {
+        background: #0d9488;
+        color: white;
+        border-color: #115e59;
+        box-shadow: 0 4px 10px rgba(13, 148, 136, 0.4);
+        animation: pulseDay 2s infinite;
+      }
+      .day-btn.has-gift-rose {
+        background: #e11d48;
+        color: white;
+        border-color: #881337;
+        box-shadow: 0 4px 10px rgba(225, 29, 72, 0.4);
+        animation: pulseDay 2s infinite;
+      }
+      .day-btn.has-gift-gold {
+        background: linear-gradient(135deg, #f59e0b, #b45309);
+        color: white;
+        border-color: #78350f;
+        box-shadow: 0 4px 10px rgba(245, 158, 11, 0.4);
+        animation: pulseDay 2s infinite;
+      }
 
       @keyframes pulseDay {
         0% {
@@ -623,7 +665,7 @@
         box-shadow: 0 5px 15px rgba(30, 58, 138, 0.1);
       }
 
-      /* DÍA 2 DE OCTUBRE (JUEGO DE VASOS / TRILE) */
+      /* DÍA 2 DE OCTUBRE (JUEGO DE VASOS) */
       #day2oct-screen {
         justify-content: flex-start;
         padding-top: 50px;
@@ -693,6 +735,303 @@
         z-index: 1;
         display: none;
         filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
+      }
+
+      /* --- DÍA 3 DE OCTUBRE: TOCADISCOS --- */
+      #day3oct-screen {
+        justify-content: flex-start;
+        padding-top: 50px;
+        text-align: center;
+      }
+      .vinyl-container {
+        position: relative;
+        width: 220px;
+        height: 220px;
+        margin: 20px auto;
+        cursor: pointer;
+      }
+      .vinyl-disc {
+        width: 220px;
+        height: 220px;
+        background: radial-gradient(
+          circle,
+          #18181b 30%,
+          #27272a 60%,
+          #09090b 100%
+        );
+        border-radius: 50%;
+        border: 4px solid #db2777;
+        box-shadow: 0 15px 35px rgba(219, 39, 119, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .vinyl-center {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, #f43f5e, #be123c);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.8rem;
+        border: 3px solid #fecdd3;
+      }
+      .vinyl-arm {
+        position: absolute;
+        top: -10px;
+        right: 10px;
+        width: 70px;
+        height: 100px;
+        border-right: 5px solid #94a3b8;
+        border-top: 5px solid #94a3b8;
+        border-radius: 0 20px 0 0;
+        transform-origin: top right;
+        transform: rotate(-25deg);
+        transition: transform 0.6s ease;
+      }
+      .vinyl-arm.playing {
+        transform: rotate(12deg);
+      }
+      .music-note {
+        position: absolute;
+        font-size: 1.5rem;
+        opacity: 0;
+        pointer-events: none;
+        color: #db2777;
+      }
+
+      /* --- DÍA 4 DE OCTUBRE: CONSTELACIÓN --- */
+      #day4oct-screen {
+        background: radial-gradient(circle at center, #1e1b4b 0%, #0f172a 100%);
+        color: #f8fafc;
+        justify-content: flex-start;
+        padding-top: 40px;
+        text-align: center;
+      }
+      .constellation-area {
+        position: relative;
+        width: 320px;
+        height: 320px;
+        margin: 20px auto;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 30px;
+        border: 2px dashed #6366f1;
+        overflow: hidden;
+      }
+      .star-node {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid #a5b4fc;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s;
+        box-shadow: 0 0 15px rgba(165, 180, 252, 0.5);
+      }
+      .star-node.connected {
+        background: #818cf8;
+        border-color: #ffffff;
+        box-shadow: 0 0 25px #c084fc;
+        transform: scale(1.15);
+      }
+
+      /* --- DÍA 5 DE OCTUBRE: GALLETA FORTUNA --- */
+      #day5oct-screen {
+        justify-content: flex-start;
+        padding-top: 50px;
+        text-align: center;
+      }
+      .cookie-wrapper {
+        position: relative;
+        width: 200px;
+        height: 180px;
+        margin: 30px auto;
+        cursor: pointer;
+      }
+      .cookie-half {
+        width: 100px;
+        height: 160px;
+        background: linear-gradient(135deg, #fef08a, #f59e0b);
+        border: 3px solid #b45309;
+        border-radius: 100px 0 0 100px;
+        position: absolute;
+        top: 0;
+        transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      .cookie-left {
+        left: 10px;
+        transform-origin: left center;
+      }
+      .cookie-right {
+        right: 10px;
+        transform-origin: right center;
+        border-radius: 0 100px 100px 0;
+      }
+      .cookie-wrapper.open .cookie-left {
+        transform: rotate(-30deg) translateX(-30px);
+      }
+      .cookie-wrapper.open .cookie-right {
+        transform: rotate(30deg) translateX(30px);
+      }
+      .fortune-paper {
+        position: absolute;
+        top: 60px;
+        left: 50%;
+        transform: translateX(-50%) scale(0.2);
+        width: 240px;
+        background: #fffbe3;
+        border: 2px solid #d97706;
+        padding: 12px;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        opacity: 0;
+        transition: all 0.6s ease;
+        z-index: 5;
+      }
+      .fortune-paper.show {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+      }
+
+      /* --- DÍA 6 DE OCTUBRE: MAPA DE TESORO --- */
+      #day6oct-screen {
+        justify-content: flex-start;
+        padding-top: 40px;
+        text-align: center;
+      }
+      .map-container {
+        position: relative;
+        width: 330px;
+        height: 350px;
+        margin: 15px auto;
+        background: #fef3c7;
+        border: 4px solid #b45309;
+        border-radius: 20px;
+        box-shadow: 0 15px 30px rgba(180, 83, 9, 0.25);
+        overflow: hidden;
+        background-image: radial-gradient(#fde68a 2px, transparent 2px);
+        background-size: 20px 20px;
+      }
+      .map-spot {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: #f59e0b;
+        color: white;
+        border: 3px solid #78350f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        transition: transform 0.2s;
+      }
+      .map-spot:active {
+        transform: scale(0.9);
+      }
+      .map-spot.found {
+        background: #10b981;
+        border-color: #065f46;
+      }
+
+      /* --- DÍA 7 DE OCTUBRE: CHAT CELULAR --- */
+      #day7oct-screen {
+        justify-content: flex-start;
+        padding-top: 40px;
+        text-align: center;
+      }
+      .phone-mockup {
+        width: 310px;
+        height: 420px;
+        background: #ffffff;
+        border: 8px solid #fda4af;
+        border-radius: 35px;
+        margin: 15px auto;
+        box-shadow: 0 20px 40px rgba(225, 29, 72, 0.25);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+      }
+      .phone-header {
+        background: #e11d48;
+        color: white;
+        padding: 12px;
+        font-weight: 700;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .phone-body {
+        flex: 1;
+        padding: 15px;
+        background: #fff1f2;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .chat-bubble {
+        max-width: 80%;
+        padding: 10px 14px;
+        border-radius: 18px;
+        font-size: 0.9rem;
+        line-height: 1.3;
+        opacity: 0;
+        transform: translateY(15px);
+        text-align: left;
+      }
+      .chat-bubble.received {
+        background: #ffffff;
+        color: #881337;
+        align-self: flex-start;
+        border-bottom-left-radius: 4px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      /* --- DÍA 8 DE OCTUBRE: RULETA --- */
+      #day8oct-screen {
+        justify-content: flex-start;
+        padding-top: 40px;
+        text-align: center;
+      }
+      .wheel-container {
+        position: relative;
+        width: 280px;
+        height: 280px;
+        margin: 20px auto;
+      }
+      .wheel-canvas {
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        border: 6px solid #b45309;
+        box-shadow: 0 15px 30px rgba(180, 83, 9, 0.3);
+      }
+      .wheel-pointer {
+        position: absolute;
+        top: -15px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 25px solid #dc2626;
+        z-index: 10;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
       }
 
       /* MODAL GENERAL COMPARTIDO */
@@ -952,7 +1291,6 @@
       </p>
 
       <div class="cup-game-container">
-        <!-- Vaso 0 -->
         <div
           class="cup-wrapper"
           id="cup-wrap-0"
@@ -964,7 +1302,6 @@
             <div class="cup-heart">🤍</div>
           </div>
         </div>
-        <!-- Vaso 1 -->
         <div
           class="cup-wrapper"
           id="cup-wrap-1"
@@ -976,7 +1313,6 @@
             <div class="cup-heart">🤍</div>
           </div>
         </div>
-        <!-- Vaso 2 -->
         <div
           class="cup-wrapper"
           id="cup-wrap-2"
@@ -997,6 +1333,228 @@
         style="background: linear-gradient(135deg, #7c3aed 0%, #4c1d95 100%)"
       >
         ¡Jugar ahora! 🎲
+      </button>
+    </div>
+
+    <!-- PANTALLA 8: 3 DE OCTUBRE (TOCADISCOS) -->
+    <div id="day3oct-screen" class="screen">
+      <button class="back-btn" onclick="goToScreen('calendar-screen')">
+        ⬅️ Volver
+      </button>
+      <h1 class="cups-title" style="color: #db2777">Nuestra Melodía 🎵</h1>
+      <p class="cups-subtitle" style="color: #9d174d">
+        Toca el disco de vinilo para reproducir la canción que me recuerda a
+        ti...
+      </p>
+
+      <div class="vinyl-container" onclick="toggleVinylPlayer()">
+        <div class="vinyl-disc" id="vinylDisc">
+          <div class="vinyl-center">❤️</div>
+        </div>
+        <div class="vinyl-arm" id="vinylArm"></div>
+      </div>
+
+      <button
+        class="btn-main"
+        id="musicBtn"
+        onclick="toggleVinylPlayer()"
+        style="
+          background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+          margin-top: 10px;
+        "
+      >
+        ▶️ Reproducir Amor
+      </button>
+    </div>
+
+    <!-- PANTALLA 9: 4 DE OCTUBRE (CONSTELACIÓN) -->
+    <div id="day4oct-screen" class="screen">
+      <button class="back-btn" onclick="goToScreen('calendar-screen')">
+        ⬅️️ Volver
+      </button>
+      <h1 class="cups-title" style="color: #a5b4fc">Constelación ✨</h1>
+      <p class="cups-subtitle" style="color: #c7d2fe">
+        Toca las 4 estrellas en orden (1, 2, 3, 4) para formar nuestro corazón
+        estelar...
+      </p>
+
+      <div class="constellation-area" id="constellationArea">
+        <svg
+          id="starSvg"
+          style="
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+          "
+        ></svg>
+        <div
+          class="star-node"
+          style="top: 20%; left: 25%"
+          onclick="clickStarNode(1, this)"
+        >
+          ⭐1
+        </div>
+        <div
+          class="star-node"
+          style="top: 20%; right: 25%"
+          onclick="clickStarNode(2, this)"
+        >
+          ⭐2
+        </div>
+        <div
+          class="star-node"
+          style="top: 55%; left: 50%; transform: translateX(-50%)"
+          onclick="clickStarNode(3, this)"
+        >
+          ⭐3
+        </div>
+        <div
+          class="star-node"
+          style="top: 80%; left: 50%; transform: translateX(-50%)"
+          onclick="clickStarNode(4, this)"
+        >
+          ⭐4
+        </div>
+      </div>
+    </div>
+
+    <!-- PANTALLA 10: 5 DE OCTUBRE (GALLETA FORTUNA) -->
+    <div id="day5oct-screen" class="screen">
+      <button class="back-btn" onclick="goToScreen('calendar-screen')">
+        ⬅️ Volver
+      </button>
+      <h1 class="cups-title" style="color: #d97706">
+        Galleta de la Fortuna 🥠
+      </h1>
+      <p class="cups-subtitle" style="color: #92400e">
+        ¡Toca la galleta crujiente para descubrir la profecía de nuestro amor!
+      </p>
+
+      <div class="cookie-wrapper" id="cookieWrapper" onclick="breakCookie()">
+        <div class="cookie-half cookie-left"></div>
+        <div class="cookie-half cookie-right"></div>
+        <div class="fortune-paper" id="fortunePaper">
+          <p style="font-size: 0.85rem; font-weight: 700; color: #b45309">
+            ✨ PROFECÍA DE HOY ✨
+          </p>
+          <p
+            style="
+              font-size: 0.95rem;
+              font-weight: 600;
+              color: #78350f;
+              margin-top: 5px;
+            "
+          >
+            "Natanael te amará más hoy que ayer, ¡pero menos que mañana!"
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANTALLA 11: 6 DE OCTUBRE (MAPA TESORO) -->
+    <div id="day6oct-screen" class="screen">
+      <button class="back-btn" onclick="goToScreen('calendar-screen')">
+        ⬅️ Volver
+      </button>
+      <h1 class="cups-title" style="color: #0d9488">Mapa del Tesoro 🗺️</h1>
+      <p class="cups-subtitle" style="color: #115e59">
+        Explora las 3 marcas de nuestro mapa para descubrir el tesoro
+        escondido...
+      </p>
+
+      <div class="map-container">
+        <div
+          class="map-spot"
+          style="top: 20%; left: 20%"
+          onclick="visitMapSpot(1, this)"
+        >
+          📍1
+        </div>
+        <div
+          class="map-spot"
+          style="top: 50%; right: 20%"
+          onclick="visitMapSpot(2, this)"
+        >
+          📍2
+        </div>
+        <div
+          class="map-spot"
+          style="top: 75%; left: 45%"
+          onclick="visitMapSpot(3, this)"
+        >
+          👑3
+        </div>
+      </div>
+    </div>
+
+    <!-- PANTALLA 12: 7 DE OCTUBRE (CHAT) -->
+    <div id="day7oct-screen" class="screen">
+      <button class="back-btn" onclick="goToScreen('calendar-screen')">
+        ⬅️ Volver
+      </button>
+      <h1 class="cups-title" style="color: #e11d48">Mensajes de Amor 📱</h1>
+      <p class="cups-subtitle" style="color: #881337">
+        ¡Snoopy tiene un chat privado para ti!
+      </p>
+
+      <div class="phone-mockup">
+        <div class="phone-header">
+          <img
+            src="https://pngimg.com/uploads/snoopy/snoopy_PNG45.png"
+            style="
+              width: 30px;
+              height: 30px;
+              border-radius: 50%;
+              background: white;
+            "
+          />
+          <span>Snoopy Amoroso ❤️</span>
+        </div>
+        <div class="phone-body" id="phoneBody"></div>
+      </div>
+      <button
+        class="btn-main"
+        onclick="startChatSequence()"
+        style="
+          background: linear-gradient(135deg, #e11d48 0%, #9f1239 100%);
+          font-size: 1rem;
+          padding: 12px 25px;
+        "
+      >
+        💬 Ver Mensajes
+      </button>
+    </div>
+
+    <!-- PANTALLA 13: 8 DE OCTUBRE (RULETA) -->
+    <div id="day8oct-screen" class="screen">
+      <button class="back-btn" onclick="goToScreen('calendar-screen')">
+        ⬅️ Volver
+      </button>
+      <h1 class="cups-title" style="color: #b45309">Ruleta del Amor 🎡</h1>
+      <p class="cups-subtitle" style="color: #78350f">
+        ¡Gira la ruleta y gana un premio romántico garantizado!
+      </p>
+
+      <div class="wheel-container">
+        <div class="wheel-pointer"></div>
+        <canvas
+          id="wheelCanvas"
+          class="wheel-canvas"
+          width="280"
+          height="280"
+        ></canvas>
+      </div>
+
+      <button
+        class="btn-main"
+        id="spinWheelBtn"
+        onclick="spinWheel()"
+        style="background: linear-gradient(135deg, #f59e0b 0%, #b45309 100%)"
+      >
+        🎰 ¡Girar Ruleta!
       </button>
     </div>
 
@@ -1040,7 +1598,7 @@
       // --- 1. FONDOS ---
       function createFloatingElements() {
         const bg = document.getElementById("bg-container");
-        const items = ["❤️", "💖", "💗", "💕", "🌹", "✨"];
+        const items = ["❤️️", "💖", "💗", "💕", "🌹", "✨", "🫐", "⭐"];
         for (let i = 0; i < 25; i++) {
           const el = document.createElement("div");
           el.classList.add("bg-element");
@@ -1071,6 +1629,7 @@
               { opacity: 1, scale: 1, duration: 0.4 },
             );
             if (screenId === "detail-screen") setupCanvasSize();
+            if (screenId === "day8oct-screen") drawWheel();
           },
         });
       }
@@ -1117,10 +1676,33 @@
               btn.innerHTML = `🫐<br>${day}`;
               btn.onclick = () => goToScreen("day1oct-screen");
             } else if (dateStr === "2026-10-02") {
-              // NUEVO DÍA: 2 DE OCTUBRE
               btn.classList.add("has-gift-purple");
               btn.innerHTML = `🎩<br>${day}`;
               btn.onclick = () => goToScreen("day2oct-screen");
+            } else if (dateStr === "2026-10-03") {
+              btn.classList.add("has-gift-pink");
+              btn.innerHTML = `🎵<br>${day}`;
+              btn.onclick = () => goToScreen("day3oct-screen");
+            } else if (dateStr === "2026-10-04") {
+              btn.classList.add("has-gift-dark");
+              btn.innerHTML = `⭐<br>${day}`;
+              btn.onclick = () => goToScreen("day4oct-screen");
+            } else if (dateStr === "2026-10-05") {
+              btn.classList.add("has-gift-amber");
+              btn.innerHTML = `🥠<br>${day}`;
+              btn.onclick = () => goToScreen("day5oct-screen");
+            } else if (dateStr === "2026-10-06") {
+              btn.classList.add("has-gift-teal");
+              btn.innerHTML = `🗺️️<br>${day}`;
+              btn.onclick = () => goToScreen("day6oct-screen");
+            } else if (dateStr === "2026-10-07") {
+              btn.classList.add("has-gift-rose");
+              btn.innerHTML = `📱<br>${day}`;
+              btn.onclick = () => goToScreen("day7oct-screen");
+            } else if (dateStr === "2026-10-08") {
+              btn.classList.add("has-gift-gold");
+              btn.innerHTML = `🎡<br>${day}`;
+              btn.onclick = () => goToScreen("day8oct-screen");
             } else {
               btn.innerHTML = `${day}`;
               btn.onclick = () => showLockedMessage(day, month.name);
@@ -1317,14 +1899,12 @@
         }
       }
 
-      // --- NUEVO: LÓGICA 2 DE OCTUBRE (JUEGO DE VASOS) ---
+      // --- LÓGICA 2 DE OCTUBRE (JUEGO DE VASOS) ---
       let cupGameStarted = false;
       let cupIsShuffling = false;
       let winningCupId = 0;
-
-      // posIndices guarda en qué posición (0,1,2) se encuentra el vaso con id (0,1,2)
       let cupPosIndices = [0, 1, 2];
-      const cupPosCoords = [20, 120, 220]; // Coordenadas en píxeles (left)
+      const cupPosCoords = [20, 120, 220];
 
       async function initCupsGame() {
         if (cupIsShuffling) return;
@@ -1332,7 +1912,6 @@
         btn.disabled = true;
         btn.innerText = "¡Atenta! 👀";
 
-        // Reiniciar estado
         cupGameStarted = false;
         document
           .querySelectorAll(".the-berry")
@@ -1341,22 +1920,18 @@
           .querySelectorAll(".the-cup")
           .forEach((c) => c.classList.remove("lift"));
 
-        // Elegir ganador aleatorio
         winningCupId = Math.floor(Math.random() * 3);
         document.getElementById(`cup-berry-${winningCupId}`).style.display =
           "block";
 
-        // 1. Mostrar dónde está el arándano levantando los vasos
         document
           .querySelectorAll(".the-cup")
           .forEach((c) => c.classList.add("lift"));
 
         setTimeout(() => {
-          // Bajar vasos
           document
             .querySelectorAll(".the-cup")
             .forEach((c) => c.classList.remove("lift"));
-
           setTimeout(() => {
             btn.innerText = "Mezclando... 🌪️";
             startCupShuffle(btn);
@@ -1366,24 +1941,20 @@
 
       async function startCupShuffle(btn) {
         cupIsShuffling = true;
-        const totalSwaps = 8; // Cantidad de mezclas
-        const speed = 0.3; // Velocidad de GSAP
+        const totalSwaps = 8;
+        const speed = 0.3;
 
         for (let i = 0; i < totalSwaps; i++) {
-          // Elegir 2 posiciones distintas para intercambiar
           let p1 = Math.floor(Math.random() * 3);
           let p2 = Math.floor(Math.random() * 3);
           while (p1 === p2) p2 = Math.floor(Math.random() * 3);
 
-          // Encontrar qué vasos están en esas posiciones
           let cup1 = cupPosIndices.indexOf(p1);
           let cup2 = cupPosIndices.indexOf(p2);
 
-          // Intercambiar en el array lógico
           cupPosIndices[cup1] = p2;
           cupPosIndices[cup2] = p1;
 
-          // Animar en el DOM
           await Promise.all([
             gsap.to(`#cup-wrap-${cup1}`, {
               left: cupPosCoords[p2],
@@ -1406,11 +1977,9 @@
       function guessCup(cupId) {
         if (!cupGameStarted || cupIsShuffling) return;
 
-        // Levantar el vaso elegido
         document.getElementById(`the-cup-${cupId}`).classList.add("lift");
 
         if (cupId === winningCupId) {
-          // GANÓ
           cupGameStarted = false;
           setTimeout(() => {
             confetti({
@@ -1422,7 +1991,7 @@
             openModal(
               "https://pngimg.com/uploads/snoopy/snoopy_PNG41.png",
               "¡Ganadora! 🏆💜",
-              `<p style="color:#4c1d95; font-weight:600; text-align:center;">¡Tienes una intuición perfecta, mi reina!<br><br>Has encontrado el arándano de la suerte y, con él, te has ganado un <strong>¡Vale por una cena súper romántica pagada por mí!</strong> 🌮🍷<br><br>Te amo muchísimo.</p>`,
+              `<p style="color:#4c1d95; font-weight:600; text-align:center;">¡Tienes una intuición perfecta, mi reina!<br><br>Has encontrado el arándano de la suerte y te has ganado un <strong>¡Vale por una cena súper romántica pagada por mí!</strong> 🌮🍷<br><br>Te amo muchísimo.</p>`,
               "¡Reclamar mi premio!",
               "#7c3aed",
               "linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%)",
@@ -1432,7 +2001,6 @@
             document.getElementById("start-cups-btn").disabled = false;
           }, 600);
         } else {
-          // PERDIÓ
           Swal.fire({
             title: "¡Uy! 🙈",
             text: "El arándano mágico no está aquí. ¡Sigue intentándolo, mi amor!",
@@ -1447,15 +2015,318 @@
         }
       }
 
-      // --- LÓGICA DÍA 28 (RAMO - REDUCIDA PARA ESPACIO) ---
+      // --- LÓGICA 3 DE OCTUBRE: TOCADISCOS ---
+      let isPlayingVinyl = false;
+      let vinylTween;
+
+      function toggleVinylPlayer() {
+        const disc = document.getElementById("vinylDisc");
+        const arm = document.getElementById("vinylArm");
+        const btn = document.getElementById("musicBtn");
+
+        if (!isPlayingVinyl) {
+          isPlayingVinyl = true;
+          arm.classList.add("playing");
+          btn.innerText = "⏸️ Pausar Melodía";
+          vinylTween = gsap.to(disc, {
+            rotation: "+=360",
+            duration: 3,
+            repeat: -1,
+            ease: "none",
+          });
+
+          const interval = setInterval(() => {
+            if (!isPlayingVinyl) {
+              clearInterval(interval);
+              return;
+            }
+            const note = document.createElement("div");
+            note.className = "music-note";
+            note.innerText = ["🎵", "🎶", "💖", "✨"][
+              Math.floor(Math.random() * 4)
+            ];
+            note.style.left = `${Math.random() * 100 + 60}px`;
+            note.style.top = "100px";
+            document.getElementById("day3oct-screen").appendChild(note);
+
+            gsap.to(note, {
+              y: -120,
+              x: (Math.random() - 0.5) * 80,
+              opacity: 1,
+              duration: 2,
+              onComplete: () => note.remove(),
+            });
+          }, 600);
+
+          setTimeout(() => {
+            confetti({
+              particleCount: 150,
+              spread: 90,
+              origin: { y: 0.6 },
+              colors: ["#ec4899", "#f43f5e"],
+            });
+            openModal(
+              "https://pngimg.com/uploads/snoopy/snoopy_PNG45.png",
+              "Nuestra Canción 🎶💖",
+              `<p style="color:#831843; font-weight:600;">"Si tuviera que elegir una melodía para escuchar por el resto de mi vida, sin duda elegiría el sonido de tu risa. ¡Eres mi canción favorita, Yadira!"</p>`,
+              "¡Te amo! 💗",
+              "#db2777",
+              "linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%)",
+            );
+          }, 2000);
+        } else {
+          isPlayingVinyl = false;
+          arm.classList.remove("playing");
+          btn.innerText = "▶️ Reproducir Amor";
+          if (vinylTween) vinylTween.pause();
+        }
+      }
+
+      // --- LÓGICA 4 DE OCTUBRE: CONSTELACIÓN ---
+      let currentStarStep = 1;
+      const starCoords = [
+        { x: 80, y: 64 },
+        { x: 240, y: 64 },
+        { x: 160, y: 176 },
+        { x: 160, y: 256 },
+      ];
+
+      function clickStarNode(step, el) {
+        if (step === currentStarStep) {
+          el.classList.add("connected");
+          if (currentStarStep > 1) {
+            const svg = document.getElementById("starSvg");
+            const line = document.createElementNS(
+              "http://www.w3.org/2000/svg",
+              "line",
+            );
+            line.setAttribute("x1", starCoords[currentStarStep - 2].x);
+            line.setAttribute("y1", starCoords[currentStarStep - 2].y);
+            line.setAttribute("x2", starCoords[step - 1].x);
+            line.setAttribute("y2", starCoords[step - 1].y);
+            line.setAttribute("stroke", "#a5b4fc");
+            line.setAttribute("stroke-width", "3");
+            line.setAttribute("stroke-dasharray", "5,5");
+            svg.appendChild(line);
+          }
+          currentStarStep++;
+
+          if (currentStarStep === 5) {
+            setTimeout(() => {
+              confetti({
+                particleCount: 200,
+                spread: 100,
+                origin: { y: 0.5 },
+                colors: ["#a5b4fc", "#818cf8"],
+              });
+              openModal(
+                "https://pngimg.com/uploads/snoopy/snoopy_PNG36.png",
+                "Estrella Infinita ⭐✨",
+                `<p style="color:#1e1b4b; font-weight:600;">"En un universo repleto de millones de estrellas, tú eres la única que ilumina todo mi mundo."</p>`,
+                "¡Amo nuestra constelación! ✨",
+                "#312e81",
+                "linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%)",
+              );
+            }, 600);
+          }
+        } else if (step > currentStarStep) {
+          Swal.fire({
+            text: "Sigue el orden numérico (1, 2, 3, 4) ✨",
+            timer: 1500,
+            showConfirmButton: false,
+            icon: "warning",
+          });
+        }
+      }
+
+      // --- LÓGICA 5 DE OCTUBRE: GALLETA FORTUNA ---
+      let cookieBroken = false;
+      function breakCookie() {
+        if (cookieBroken) return;
+        cookieBroken = true;
+        const wrapper = document.getElementById("cookieWrapper");
+        const paper = document.getElementById("fortunePaper");
+
+        wrapper.classList.add("open");
+        setTimeout(() => {
+          paper.classList.add("show");
+          confetti({
+            particleCount: 120,
+            spread: 80,
+            origin: { y: 0.6 },
+            colors: ["#f59e0b", "#d97706"],
+          });
+        }, 500);
+      }
+
+      // --- LÓGICA 6 DE OCTUBRE: MAPA TESORO ---
+      let mapSpotsFound = 0;
+      const mapMemories = [
+        "📍 Marca 1: Tu sonrisa ilumina el camino...",
+        "📍 Marca 2: Tus abrazos son mi lugar seguro...",
+        "👑 Marca 3: ¡Has encontrado el tesoro de mi corazón!",
+      ];
+
+      function visitMapSpot(num, el) {
+        if (el.classList.contains("found")) return;
+        el.classList.add("found");
+        mapSpotsFound++;
+
+        Swal.fire({
+          title: `Descubrimiento #${num}`,
+          text: mapMemories[num - 1],
+          icon: "success",
+          confirmButtonColor: "#0d9488",
+        });
+
+        if (mapSpotsFound === 3) {
+          setTimeout(() => {
+            confetti({
+              particleCount: 220,
+              spread: 120,
+              origin: { y: 0.5 },
+              colors: ["#0d9488", "#14b8a6"],
+            });
+            openModal(
+              "https://pngimg.com/uploads/snoopy/snoopy_PNG41.png",
+              "¡Tesoro Encontrado! 🏴‍☠️💎",
+              `<p style="color:#115e59; font-weight:600;">"No hay mapa en este mundo que pueda medir la inmensidad de lo que siento por ti, mi reina."</p>`,
+              "¡Eres mi tesoro! ❤️",
+              "#0d9488",
+              "linear-gradient(135deg, #ccfbf1 0%, #99f6e4 100%)",
+            );
+          }, 1200);
+        }
+      }
+
+      // --- LÓGICA 7 DE OCTUBRE: CHAT ---
+      const chatMessages = [
+        "¡Hola mi Yadira hermosa! 👋❤️",
+        "Solo quería decirte que eres increíble...",
+        "Y que cada día a tu lado es un regalo maravilloso ✨",
+        "Te amo más allá de las palabras. 💖",
+      ];
+      let chatIndex = 0;
+
+      function startChatSequence() {
+        const body = document.getElementById("phoneBody");
+        body.innerHTML = "";
+        chatIndex = 0;
+
+        function sendNext() {
+          if (chatIndex < chatMessages.length) {
+            const msg = document.createElement("div");
+            msg.className = "chat-bubble received";
+            msg.innerText = chatMessages[chatIndex];
+            body.appendChild(msg);
+            gsap.to(msg, { opacity: 1, y: 0, duration: 0.4 });
+            body.scrollTop = body.scrollHeight;
+            chatIndex++;
+            setTimeout(sendNext, 1200);
+          } else {
+            setTimeout(() => {
+              confetti({
+                particleCount: 150,
+                spread: 90,
+                origin: { y: 0.6 },
+                colors: ["#e11d48", "#fb7185"],
+              });
+            }, 500);
+          }
+        }
+        sendNext();
+      }
+
+      // --- LÓGICA 8 DE OCTUBRE: RULETA ---
+      const wheelOptions = [
+        "Cena Especial 🍕",
+        "Masaje Relajante 💆‍♀️",
+        "Paseo Romántico 🌅",
+        "Noche de Pelis 🍿",
+        "Lluvia de Besos 💋",
+        "Sorpresa Dulce 🍩",
+      ];
+      const wheelColors = [
+        "#f59e0b",
+        "#ec4899",
+        "#3b82f6",
+        "#10b981",
+        "#8b5cf6",
+        "#ef4444",
+      ];
+      let isSpinningWheel = false;
+
+      function drawWheel() {
+        const canvas = document.getElementById("wheelCanvas");
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        const numSlices = wheelOptions.length;
+        const sliceAngle = (Math.PI * 2) / numSlices;
+
+        ctx.clearRect(0, 0, 280, 280);
+
+        for (let i = 0; i < numSlices; i++) {
+          ctx.beginPath();
+          ctx.moveTo(140, 140);
+          ctx.arc(140, 140, 135, i * sliceAngle, (i + 1) * sliceAngle);
+          ctx.fillStyle = wheelColors[i];
+          ctx.fill();
+          ctx.lineWidth = 3;
+          ctx.strokeStyle = "#ffffff";
+          ctx.stroke();
+
+          ctx.save();
+          ctx.translate(140, 140);
+          ctx.rotate(i * sliceAngle + sliceAngle / 2);
+          ctx.fillStyle = "#ffffff";
+          ctx.font = "bold 12px Poppins, sans-serif";
+          ctx.textAlign = "right";
+          ctx.fillText(wheelOptions[i], 125, 5);
+          ctx.restore();
+        }
+      }
+
+      function spinWheel() {
+        if (isSpinningWheel) return;
+        isSpinningWheel = true;
+        const btn = document.getElementById("spinWheelBtn");
+        btn.disabled = true;
+
+        const canvas = document.getElementById("wheelCanvas");
+        const winningIndex = Math.floor(Math.random() * wheelOptions.length);
+        const sliceDeg = 360 / wheelOptions.length;
+        const targetDeg =
+          360 * 5 + (360 - (winningIndex * sliceDeg + sliceDeg / 2)) - 90;
+
+        gsap.to(canvas, {
+          rotation: targetDeg,
+          duration: 4,
+          ease: "power4.out",
+          onComplete: () => {
+            isSpinningWheel = false;
+            btn.disabled = false;
+            confetti({ particleCount: 200, spread: 100, origin: { y: 0.5 } });
+            openModal(
+              "https://pngimg.com/uploads/snoopy/snoopy_PNG45.png",
+              "¡Premio Ganado! 🎰💖",
+              `<p style="color:#78350f; font-weight:700; font-size:1.2rem;">¡Has ganado: ${wheelOptions[winningIndex]}!</p><p style="color:#b45309; margin-top:10px;">¡Reclamable inmediatamente con Natanael!</p>`,
+              "¡Quiero mi premio! 🥰",
+              "#b45309",
+              "linear-gradient(135deg, #fef3c6 0%, #fde68a 100%)",
+            );
+          },
+        });
+      }
+
+      // --- LÓGICA DÍA 28 (RAMO) ---
       const gift28 = document.getElementById("gift-28");
       const lid28 = document.getElementById("lid-28");
-      const canvas = document.getElementById("flowerCanvas");
-      const ctx = canvas.getContext("2d");
+      const canvas28 = document.getElementById("flowerCanvas");
+      const ctx28 = canvas28.getContext("2d");
       let isOpened28 = false;
       function setupCanvasSize() {
-        canvas.width = Math.min(window.innerWidth * 0.92, 460);
-        canvas.height = canvas.width * 1.1;
+        canvas28.width = Math.min(window.innerWidth * 0.92, 460);
+        canvas28.height = canvas28.width * 1.1;
         if (isOpened28) drawBouquet();
       }
       window.addEventListener("resize", setupCanvasSize);
@@ -1486,7 +2357,7 @@
               { opacity: 0 },
               { opacity: 1, duration: 0.1 },
             );
-            gsap.from(canvas, {
+            gsap.from(canvas28, {
               scale: 0.1,
               y: 100,
               duration: 1.3,
@@ -1502,58 +2373,58 @@
         c.fill();
       }
       function drawRoseFlower(x, y, s, a = 0) {
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.rotate(a);
-        ctx.scale(s, s);
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.quadraticCurveTo(-15, 90, -5, 180);
-        ctx.lineWidth = 14;
-        ctx.strokeStyle = "#1b4332";
-        ctx.stroke();
-        ctx.fillStyle = "#a4133c";
+        ctx28.save();
+        ctx28.translate(x, y);
+        ctx28.rotate(a);
+        ctx28.scale(s, s);
+        ctx28.beginPath();
+        ctx28.moveTo(0, 0);
+        ctx28.quadraticCurveTo(-15, 90, -5, 180);
+        ctx28.lineWidth = 14;
+        ctx28.strokeStyle = "#1b4332";
+        ctx28.stroke();
+        ctx28.fillStyle = "#a4133c";
         for (let i = 0; i < 14; i++) {
-          ctx.save();
-          ctx.rotate(((Math.PI * 2) / 14) * i);
-          drawRosePetal(ctx, 55, 28);
-          ctx.restore();
+          ctx28.save();
+          ctx28.rotate(((Math.PI * 2) / 14) * i);
+          drawRosePetal(ctx28, 55, 28);
+          ctx28.restore();
         }
-        ctx.fillStyle = "#c9184a";
+        ctx28.fillStyle = "#c9184a";
         for (let i = 0; i < 14; i++) {
-          ctx.save();
-          ctx.rotate(((Math.PI * 2) / 14) * i + 0.2);
-          drawRosePetal(ctx, 45, 24);
-          ctx.restore();
+          ctx28.save();
+          ctx28.rotate(((Math.PI * 2) / 14) * i + 0.2);
+          drawRosePetal(ctx28, 45, 24);
+          ctx28.restore();
         }
-        ctx.beginPath();
-        ctx.arc(0, 0, 12, 0, Math.PI * 2);
-        ctx.fillStyle = "#800f2f";
-        ctx.fill();
-        ctx.restore();
+        ctx28.beginPath();
+        ctx28.arc(0, 0, 12, 0, Math.PI * 2);
+        ctx28.fillStyle = "#800f2f";
+        ctx28.fill();
+        ctx28.restore();
       }
       function drawBouquetRibbon(x, y, s) {
-        ctx.save();
-        ctx.translate(x, y);
-        ctx.scale(s, s);
-        ctx.beginPath();
-        ctx.moveTo(-85, -35);
-        ctx.lineTo(85, -35);
-        ctx.lineTo(30, 130);
-        ctx.lineTo(-30, 130);
-        ctx.closePath();
-        ctx.fillStyle = "#ffc2d1";
-        ctx.fill();
-        ctx.beginPath();
-        ctx.arc(0, 12, 12, 0, Math.PI * 2);
-        ctx.fillStyle = "#ff0054";
-        ctx.fill();
-        ctx.restore();
+        ctx28.save();
+        ctx28.translate(x, y);
+        ctx28.scale(s, s);
+        ctx28.beginPath();
+        ctx28.moveTo(-85, -35);
+        ctx28.lineTo(85, -35);
+        ctx28.lineTo(30, 130);
+        ctx28.lineTo(-30, 130);
+        ctx28.closePath();
+        ctx28.fillStyle = "#ffc2d1";
+        ctx28.fill();
+        ctx28.beginPath();
+        ctx28.arc(0, 12, 12, 0, Math.PI * 2);
+        ctx28.fillStyle = "#ff0054";
+        ctx28.fill();
+        ctx28.restore();
       }
       function drawBouquet() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        const w = canvas.width,
-          h = canvas.height,
+        ctx28.clearRect(0, 0, canvas28.width, canvas28.height);
+        const w = canvas28.width,
+          h = canvas28.height,
           bs = w / 420;
         drawRoseFlower(w * 0.25, h * 0.38, 0.85 * bs, -0.35);
         drawRoseFlower(w * 0.75, h * 0.38, 0.85 * bs, 0.35);
